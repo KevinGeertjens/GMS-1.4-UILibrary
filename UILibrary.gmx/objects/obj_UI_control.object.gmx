@@ -154,6 +154,7 @@ if(!mouseInside &amp;&amp; point_in_rectangle(mouseX, mouseY, x, y, x + width, y
 {
     scr_invoke_events(id, mouseEnterEvents);
     mouseInside = true;
+    
 }
 //MouseLeave
 if(mouseInside &amp;&amp; !point_in_rectangle(mouseX, mouseY, x, y, x + width, y + height))

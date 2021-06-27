@@ -13,6 +13,9 @@
       <script>scripts\scr_invoke_events.gml</script>
       <scripts name="Base Events">
         <script>scripts\scr_event_reloadBG.gml</script>
+        <script>scripts\scr_event_reloadBorder.gml</script>
+        <script>scripts\scr_event_highlightBG.gml</script>
+        <script>scripts\scr_event_returnNormalBG.gml</script>
       </scripts>
     </scripts>
   </scripts>

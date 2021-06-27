@@ -1,5 +1,5 @@
 //scr_event_reloadBG(id)
 var sender = argument0;
-sender.displayBgColor = sender.bgColor;
+sender.displayBorderColor = sender.borderColor;
 mouseInside = !mouseInside;
 

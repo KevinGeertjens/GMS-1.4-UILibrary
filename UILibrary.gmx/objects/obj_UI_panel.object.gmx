@@ -62,6 +62,7 @@ bgAlpha = 1;
 borderAlpha = 1;
 borderWidth = 2;
 borderColor = colors.black;
+displayBorderColor = borderColor;
 </string>
           </argument>
         </arguments>
@@ -85,8 +86,11 @@ borderColor = colors.black;
             <string>///Event Setup
 bgColorChangedEvents = ds_list_create();
 oldBgColor = bgColor;
-
 bgColorChangedEvents[| 0] = scr_event_reloadBG;
+
+borderColorChangedEvents = ds_list_create();
+oldBorderColor = borderColor;
+borderColorChangedEvents[| 0] = scr_event_reloadBorder;
 </string>
           </argument>
         </arguments>
@@ -137,6 +141,12 @@ if(oldBgColor != bgColor)
     scr_invoke_events(id, bgColorChangedEvents);
     oldBgColor = bgColor;
 }
+
+if(oldBorderColor != borderColor)
+{
+    scr_invoke_events(id, borderColorChangedEvents);
+    oldBorderColor = borderColor;
+}
 </string>
           </argument>
         </arguments>
@@ -185,13 +195,13 @@ event_inherited();
 
 //Background
 draw_set_alpha(bgAlpha);
-draw_set_color(bgColor);
+draw_set_color(displayBgColor);
 
 draw_rectangle(x + borderWidth + 1, y + borderWidth + 1, x+width - borderWidth, y+height - borderWidth, false);
 
 //Border
 draw_set_alpha(borderAlpha);
-draw_set_color(borderColor);
+draw_set_color(displayBorderColor);
 
 draw_line_width(x, y+borderWidth/2, x+width, y+borderWidth/2, borderWidth);
 draw_line_width(x+width - borderWidth/2, y+borderWidth, x+width - borderWidth/2, y+height - borderWidth, borderWidth);

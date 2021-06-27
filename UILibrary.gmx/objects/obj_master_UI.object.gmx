@@ -50,7 +50,7 @@ controls = ds_list_create();
           <argument>
             <kind>1</kind>
             <string>///GUI Settings
-display_set_gui_size(426, 240);
+display_set_gui_size(640, 360);
 
 </string>
           </argument>
