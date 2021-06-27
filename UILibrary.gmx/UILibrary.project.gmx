@@ -8,6 +8,19 @@
   <sprites name="sprites"/>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts"/>
+  <fonts name="fonts">
+    <fonts name="UILibrary">
+      <font>fonts\fnt_UI_default</font>
+    </fonts>
+  </fonts>
+  <objects name="objects">
+    <objects name="UILibrary">
+      <objects name="Data">
+        <object>objects\obj_UI_colors</object>
+      </objects>
+    </objects>
+  </objects>
   <help>
     <rtf>help.rtf</rtf>
   </help>
