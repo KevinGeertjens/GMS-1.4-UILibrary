@@ -19,6 +19,18 @@
       <objects name="Data">
         <object>objects\obj_UI_colors</object>
       </objects>
+      <objects name="Controls">
+        <object>objects\obj_UI_control</object>
+        <object>objects\obj_UI_panel</object>
+        <object>objects\obj_UI_label</object>
+        <object>objects\obj_UI_button</object>
+        <object>objects\obj_UI_checkbox</object>
+        <object>objects\obj_UI_slider</object>
+        <object>objects\obj_UI_combobox</object>
+        <object>objects\obj_UI_textbox</object>
+        <object>objects\obj_UI_spritebox</object>
+        <object>objects\obj_UI_progressbar</object>
+      </objects>
     </objects>
   </objects>
   <help>
