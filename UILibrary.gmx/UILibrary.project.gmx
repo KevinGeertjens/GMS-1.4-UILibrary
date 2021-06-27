@@ -8,7 +8,11 @@
   <sprites name="sprites"/>
   <backgrounds name="background"/>
   <paths name="paths"/>
-  <scripts name="scripts"/>
+  <scripts name="scripts">
+    <scripts name="UILibrary">
+      <script>scripts\scr_invoke_events.gml</script>
+    </scripts>
+  </scripts>
   <fonts name="fonts">
     <fonts name="UILibrary">
       <font>fonts\fnt_UI_default</font>
@@ -31,6 +35,10 @@
         <object>objects\obj_UI_spritebox</object>
         <object>objects\obj_UI_progressbar</object>
       </objects>
+      <objects name="Masters">
+        <object>objects\obj_master_UI</object>
+      </objects>
+      <object>objects\obj_UI_test</object>
     </objects>
   </objects>
   <help>
