@@ -7,7 +7,290 @@
   <persistent>0</persistent>
   <parentName>obj_UI_panel</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parent Event
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Base Properties
+
+//Size
+autosize = false;
+width = 80;
+height = 30;
+
+//Text
+text = "label1";
+displayText = text;
+
+textColor = colors.black;
+textAlpha = 1;
+textAlign = TEXT_ALIGN_LEFT;
+
+//Font
+font = fnt_UI_default;
+
+//Background
+bgAlpha = 0;
+
+//Border
+borderAlpha = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Event Setup
+textAlteredEvents = ds_list_create();
+fontAlteredEvents = ds_list_create();
+
+oldText = "";
+oldFont = font;
+
+textAlteredEvents[| 0] = scr_event_reloadText;
+sizeAlteredEvents[| 0] = scr_event_reloadText;
+fontAlteredEvents[| 0] = scr_event_reloadText;
+
+oldAutosize = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parent Event
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Event Invokations
+
+//Autosized changed
+if(oldAutosize != autosize &amp;&amp; autosize == true)
+{
+    draw_set_font(font);
+    var newWidth = string_width(text) + 16;
+    var newHeight = string_height(text) + 16;
+        
+    if(newWidth &gt; width) width = newWidth;
+    if(newHeight &gt; height) height = newHeight;
+    
+    oldAutosize = autosize;
+}
+
+//TextChanged &amp; SizeChanged
+if(text != oldText)
+{
+    if(autosize)
+    {
+        draw_set_font(font);
+        var newWidth = string_width(text) + 16;
+        var newHeight = string_height(text) + 16;
+        
+        if(newWidth &gt; width) width = newWidth;
+        if(newHeight &gt; height) height = newHeight;
+    }
+    
+    scr_invoke_events(id, textAlteredEvents);
+    oldText = text;
+}
+
+if(font != oldFont)
+{
+    if(autosize)
+    {
+        draw_set_font(font);
+        var newWidth = string_width(text) + 16;
+        var newHeight = string_height(text) + 16;
+        
+        if(newWidth &gt; width) width = newWidth;
+        if(newHeight &gt; height) height = newHeight;
+    }
+    
+    scr_invoke_events(id, textAlteredEvents);
+    oldFont = font;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parent Event
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Drawing Settings
+draw_set_font(font);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Drawing Self
+
+draw_set_color(textColor);
+var textWidth = string_width(displayText);
+var textHeight = string_height(displayText);
+
+var Y = y + height/2 - textHeight/2;
+
+//Determining X-coordinate based on textAlign
+var X; var offset = 8;
+switch(textAlign)
+{
+    case TEXT_ALIGN_LEFT:
+        X = x + offset;
+        break;
+        
+    case TEXT_ALIGN_CENTER:
+        X = x + width/2 - textWidth/2;
+        break;
+        
+    case TEXT_ALIGN_RIGHT:
+        X = x + width - textWidth - offset;
+}
+draw_set_alpha(textAlpha);
+draw_text(X, Y, displayText);
+draw_set_alpha(1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>

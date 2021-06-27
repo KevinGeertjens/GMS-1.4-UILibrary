@@ -31,8 +31,82 @@ colors = obj_master_UI.colors;
 bgPanel = instance_create(10, 10, obj_UI_panel);
 bgPanel.bgColor = colors.lightBlue;
 bgPanel.borderWidth = 4;
+bgPanel.width = 300;
+bgPanel.height = 150;
+bgPanel.depth = 0;
+
+testLabel = instance_create(bgPanel.x + 8, bgPanel.y + 8, obj_UI_label);
+testLabel.depth = -1;
+testLabel.bgAlpha = 0.4;
+testLabel.borderAlpha=1;
+testLabel.borderColor = colors.red;
+testLabel.textColor = colors.red;
+
+testLabel2 = instance_create(testLabel.x + testLabel.width + 4, testLabel.y, obj_UI_label);
+testLabel2.depth = -1;
+testLabel2.bgColor = colors.green;
+testLabel2.bgAlpha = 0.4;
+testLabel2.text = "TestLabel2";
+testLabel2.autosize = true;
+testLabel2.font = fnt_UI_test;
 
 
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>window_center();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Test Input
+if(keyboard_check_pressed(ord("F")))
+{
+    fullscreen = window_get_fullscreen();
+    window_set_fullscreen(!fullscreen);
+    alarm[0] = 1;
+    
+    
+}
 </string>
           </argument>
         </arguments>

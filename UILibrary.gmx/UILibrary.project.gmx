@@ -16,12 +16,15 @@
         <script>scripts\scr_event_reloadBorder.gml</script>
         <script>scripts\scr_event_highlightBG.gml</script>
         <script>scripts\scr_event_returnNormalBG.gml</script>
+        <script>scripts\scr_event_reloadText.gml</script>
       </scripts>
+      <script>scripts\scr_string_trim.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
     <fonts name="UILibrary">
       <font>fonts\fnt_UI_default</font>
+      <font>fonts\fnt_UI_test</font>
     </fonts>
   </fonts>
   <objects name="objects">
@@ -50,6 +53,11 @@
   <rooms name="rooms">
     <room>rooms\rm_test</room>
   </rooms>
+  <constants number="3">
+    <constant name="TEXT_ALIGN_LEFT">0</constant>
+    <constant name="TEXT_ALIGN_CENTER">1</constant>
+    <constant name="TEXT_ALIGN_RIGHT">2</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>
