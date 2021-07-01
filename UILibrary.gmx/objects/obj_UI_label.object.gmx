@@ -104,6 +104,8 @@ textAlteredEvents[| 0] = scr_event_reloadText;
 sizeAlteredEvents[| 0] = scr_event_reloadText;
 fontAlteredEvents[| 0] = scr_event_reloadText;
 
+textColorAlteredEvents[| 0] = scr_event_reloadTextColor;
+
 oldAutosize = false;
 </string>
           </argument>

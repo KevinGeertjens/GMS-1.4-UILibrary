@@ -57,6 +57,7 @@ testLabel3.bgAlpha = 0.4;
 testLabel3.text = "A label with a smaller font";
 testLabel3.autosize = true;
 testLabel3.font = fnt_UI_test_small;
+testLabel3.textColor = colors.red;
 ds_list_add(testLabel3.mouseEnterEvents, scr_event_highlightText);
 ds_list_add(testLabel3.mouseLeaveEvents, scr_event_returnNormalTextColor);
 

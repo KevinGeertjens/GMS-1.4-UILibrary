@@ -48,6 +48,7 @@
     <scripts name="UILibrary">
       <scripts name="Base Events">
         <script>scripts\scr_event_reloadBG.gml</script>
+        <script>scripts\scr_event_reloadTextColor.gml</script>
         <script>scripts\scr_event_reloadBorder.gml</script>
         <script>scripts\scr_event_highlightBG.gml</script>
         <script>scripts\scr_event_highlightText.gml</script>
