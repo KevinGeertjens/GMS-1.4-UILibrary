@@ -281,14 +281,14 @@ switch(textAlign)
         break;
         
     case TEXT_ALIGN_CENTER:
-        X = X + scaledWidth/2 - textWidth/2;
+        X = round(X + scaledWidth/2 - textWidth/2);
         break;
         
     case TEXT_ALIGN_RIGHT:
         X = X + scaledWidth - textWidth - offset;
 }
 draw_set_alpha(textAlpha);
-draw_text(X, Y, displayText);
+draw_text(round(X), round(Y), displayText);
 draw_set_alpha(1);
 </string>
           </argument>

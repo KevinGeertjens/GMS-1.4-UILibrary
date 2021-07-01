@@ -17,7 +17,6 @@ var last = font_get_last(font);
 size = size * scale;
     
 //Creating new displayFont
-//var newFont = font_add('arial.ttf', size, bold, italic, first, last);
 var newFont = font_add(name, size, bold, italic, first, last);
 
 
