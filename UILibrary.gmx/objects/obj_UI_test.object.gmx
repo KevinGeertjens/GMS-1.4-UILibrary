@@ -47,8 +47,16 @@ testLabel2.depth = -1;
 testLabel2.bgColor = colors.green;
 testLabel2.bgAlpha = 0.4;
 testLabel2.text = "TestLabel2";
-testLabel2.autosize = true;
+//testLabel2.autosize = true;
 testLabel2.font = fnt_UI_test;
+
+testLabel3 = instance_create(testLabel.x, testLabel2.y + testLabel2.height + 5, obj_UI_label);
+testLabel3.depth = -1;
+testLabel3.bgColor = colors.blue;
+testLabel3.bgAlpha = 0.4;
+testLabel3.text = "A label with a smaller font";
+testLabel3.autosize = true;
+testLabel3.font = fnt_UI_test_small;
 
 
 

@@ -64,6 +64,7 @@
     <fonts name="UILibrary">
       <font>fonts\fnt_UI_default</font>
       <font>fonts\fnt_UI_test</font>
+      <font>fonts\fnt_UI_test_small</font>
     </fonts>
   </fonts>
   <objects name="objects">

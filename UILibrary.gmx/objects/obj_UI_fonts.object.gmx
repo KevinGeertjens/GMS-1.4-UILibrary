@@ -30,6 +30,7 @@ fontList = ds_list_create();
 
 ds_list_add(fontList, fnt_UI_default);
 ds_list_add(fontList, fnt_UI_test);
+ds_list_add(fontList, fnt_UI_test_small);
 </string>
           </argument>
         </arguments>

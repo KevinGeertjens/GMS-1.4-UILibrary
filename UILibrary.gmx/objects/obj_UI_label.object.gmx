@@ -148,12 +148,15 @@ event_inherited();
             <kind>1</kind>
             <string>///Event Invokations
 
+var widthPadding = 16;
+var heightPadding = 10;
+
 //Autosized changed
 if(oldAutosize != autosize &amp;&amp; autosize == true)
 {
     draw_set_font(font);
-    var newWidth = string_width(text) + 16;
-    var newHeight = string_height(text) + 16;
+    var newWidth = string_width(text) + widthPadding;
+    var newHeight = string_height(text) + heightPadding;
         
     if(newWidth &gt; width) width = newWidth;
     if(newHeight &gt; height) height = newHeight;
@@ -167,8 +170,8 @@ if(text != oldText)
     if(autosize)
     {
         draw_set_font(font);
-        var newWidth = string_width(text) + 16;
-        var newHeight = string_height(text) + 16;
+        var newWidth = string_width(text) + widthPadding;
+        var newHeight = string_height(text) + heightPadding;
         
         if(newWidth &gt; width) width = newWidth;
         if(newHeight &gt; height) height = newHeight;
@@ -183,8 +186,8 @@ if(font != oldFont)
     if(autosize)
     {
         draw_set_font(font);
-        var newWidth = string_width(text) + 16;
-        var newHeight = string_height(text) + 16;
+        var newWidth = string_width(text) + widthPadding;
+        var newHeight = string_height(text) + heightPadding;
         
         if(newWidth &gt; width) width = newWidth;
         if(newHeight &gt; height) height = newHeight;
@@ -273,7 +276,7 @@ var textHeight = string_height(displayText);
 var Y = Y + scaledHeight/2 - textHeight/2;
 
 //Determining X-coordinate based on textAlign
-var offset = 8;
+var offset = 6 * scale;
 switch(textAlign)
 {
     case TEXT_ALIGN_LEFT:
