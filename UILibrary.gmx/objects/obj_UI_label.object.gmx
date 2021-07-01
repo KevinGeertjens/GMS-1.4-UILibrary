@@ -59,6 +59,7 @@ text = "label1";
 displayText = text;
 
 textColor = obj_UI_colors.black;
+displayTextColor = textColor;
 textAlpha = 1;
 textAlign = TEXT_ALIGN_LEFT;
 
@@ -93,9 +94,11 @@ borderAlpha = 0;
             <string>///Event Setup
 textAlteredEvents = ds_list_create();
 fontAlteredEvents = ds_list_create();
+textColorAlteredEvents = ds_list_create();
 
 oldText = "";
 oldFont = font;
+oldTextColor = textColor;
 
 textAlteredEvents[| 0] = scr_event_reloadText;
 sizeAlteredEvents[| 0] = scr_event_reloadText;
@@ -196,6 +199,13 @@ if(font != oldFont)
     scr_invoke_events(id, textAlteredEvents);
     oldFont = font;
 }
+
+//TextColorChanged
+if(textColor != oldTextColor)
+{
+    scr_invoke_events(id, textColorAlteredEvents);
+    oldTextColor = textColor;
+}
 </string>
           </argument>
         </arguments>
@@ -269,7 +279,6 @@ var Y = y * scale;
 var scaledWidth = width * scale;
 var scaledHeight = height * scale;
 
-draw_set_color(textColor);
 var textWidth = string_width(displayText);
 var textHeight = string_height(displayText);
 
@@ -290,7 +299,9 @@ switch(textAlign)
     case TEXT_ALIGN_RIGHT:
         X = X + scaledWidth - textWidth - offset;
 }
+
 draw_set_alpha(textAlpha);
+draw_set_color(displayTextColor);
 draw_text(round(X), round(Y), displayText);
 draw_set_alpha(1);
 </string>

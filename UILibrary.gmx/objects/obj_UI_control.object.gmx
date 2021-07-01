@@ -131,9 +131,14 @@ mouseY = device_mouse_y_to_gui(0);
           <argument>
             <kind>1</kind>
             <string>///Invoking Events
+var scale = obj_master_UI.scale;
+var X = x * scale;
+var Y = y * scale;
+var scaledWidth = width * scale;
+var scaledHeight = height * scale;
 
 //Click
-if(point_in_rectangle(mouseX, mouseY, x, y, x + width, y + height) &amp;&amp; mouse_check_button_pressed(mb_left))
+if(point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight) &amp;&amp; mouse_check_button_pressed(mb_left))
 {
     scr_invoke_events(id, clickEvents);
 }
@@ -147,14 +152,14 @@ if(oldWidth != width || oldHeight != height)
 }
 
 //MouseEnter
-if(!mouseInside &amp;&amp; point_in_rectangle(mouseX, mouseY, x, y, x + width, y + height))
+if(!mouseInside &amp;&amp; point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight))
 {
     scr_invoke_events(id, mouseEnterEvents);
     mouseInside = true;
     
 }
 //MouseLeave
-if(mouseInside &amp;&amp; !point_in_rectangle(mouseX, mouseY, x, y, x + width, y + height))
+if(mouseInside &amp;&amp; !point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight))
 {
     scr_invoke_events(id, mouseLeaveEvents);
     mouseInside = false;

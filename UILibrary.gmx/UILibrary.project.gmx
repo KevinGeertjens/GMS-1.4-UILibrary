@@ -50,7 +50,9 @@
         <script>scripts\scr_event_reloadBG.gml</script>
         <script>scripts\scr_event_reloadBorder.gml</script>
         <script>scripts\scr_event_highlightBG.gml</script>
+        <script>scripts\scr_event_highlightText.gml</script>
         <script>scripts\scr_event_returnNormalBG.gml</script>
+        <script>scripts\scr_event_returnNormalTextColor.gml</script>
         <script>scripts\scr_event_reloadText.gml</script>
       </scripts>
       <scripts name="Misc.">
