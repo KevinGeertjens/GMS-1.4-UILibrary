@@ -27,9 +27,6 @@
             <kind>1</kind>
             <string>///Base Properties
 
-//Colors
-colors = obj_master_UI.colors;
-
 //Size
 width = 0;
 height = 0;

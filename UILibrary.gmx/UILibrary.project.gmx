@@ -3,6 +3,42 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="2" name="datafiles">
+    <datafile>
+      <name>Arial</name>
+      <exists>-1</exists>
+      <size>367112</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Arial</filename>
+    </datafile>
+    <datafile>
+      <name>Roboto</name>
+      <exists>-1</exists>
+      <size>168260</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Roboto</filename>
+    </datafile>
+  </datafiles>
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites"/>
@@ -10,7 +46,6 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="UILibrary">
-      <script>scripts\scr_invoke_events.gml</script>
       <scripts name="Base Events">
         <script>scripts\scr_event_reloadBG.gml</script>
         <script>scripts\scr_event_reloadBorder.gml</script>
@@ -18,7 +53,11 @@
         <script>scripts\scr_event_returnNormalBG.gml</script>
         <script>scripts\scr_event_reloadText.gml</script>
       </scripts>
-      <script>scripts\scr_string_trim.gml</script>
+      <scripts name="Misc.">
+        <script>scripts\scr_invoke_events.gml</script>
+        <script>scripts\scr_string_trim.gml</script>
+        <script>scripts\scr_resize_font.gml</script>
+      </scripts>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -31,6 +70,7 @@
     <objects name="UILibrary">
       <objects name="Data">
         <object>objects\obj_UI_colors</object>
+        <object>objects\obj_UI_fonts</object>
       </objects>
       <objects name="Controls">
         <object>objects\obj_UI_control</object>

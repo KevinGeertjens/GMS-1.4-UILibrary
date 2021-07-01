@@ -25,8 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///GUI Settings
-event_user(0);
+            <string>///Storing list of all fonts
+fontList = ds_list_create();
+
+ds_list_add(fontList, fnt_UI_default);
+ds_list_add(fontList, fnt_UI_test);
 </string>
           </argument>
         </arguments>
@@ -47,12 +50,14 @@ event_user(0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initializing UI
-colors = instance_create(0, 0, obj_UI_colors);
-fonts = fontObject.fonts;
+            <string>///Creating display fonts
+var scale = obj_master_UI.scale;
 
-controls = ds_list_create();
+//Map to store all display fonts
+fonts = ds_map_create();
 
+//Creating display fonts
+event_user(0);
 </string>
           </argument>
         </arguments>
@@ -75,47 +80,21 @@ controls = ds_list_create();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Adjusting GUI size to fit window
-var originalWidth = 640;
-display_set_gui_maximise();
-
-//Determining scale factor
-scale = display_get_gui_width() / originalWidth;
-show_debug_message("Scale: " + string(scale));
-
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Resizing fonts to fit new GUI size
-if(!instance_exists(obj_UI_fonts))
-{
-    fontObject = instance_create(0, 0, obj_UI_fonts);
-}
+var scale = obj_master_UI.scale;
 
-with(fontObject)
+for(var i = 0; i &lt; ds_list_size(fontList); i++)
 {
-    event_user(0);
+    var fontReference = fontList[| i];
+    
+    var oldFont = fonts[? fontReference];
+    if(oldFont != undefined)
+    {
+        font_delete(fonts[? fontReference]); 
+    }
+    fonts[? fontReference] = scr_resize_font(fontReference, scale);
+
 }
-fonts = fontObject.fonts;
 </string>
           </argument>
         </arguments>

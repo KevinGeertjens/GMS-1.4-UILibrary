@@ -58,7 +58,7 @@ height = 30;
 text = "label1";
 displayText = text;
 
-textColor = colors.black;
+textColor = obj_UI_colors.black;
 textAlpha = 1;
 textAlign = TEXT_ALIGN_LEFT;
 
@@ -238,7 +238,7 @@ event_inherited();
           <argument>
             <kind>1</kind>
             <string>///Drawing Settings
-draw_set_font(font);
+draw_set_font(obj_UI_fonts.fonts[? font]);
 </string>
           </argument>
         </arguments>
@@ -260,27 +260,32 @@ draw_set_font(font);
           <argument>
             <kind>1</kind>
             <string>///Drawing Self
+var scale = obj_master_UI.scale;
+var X = x * scale;
+var Y = y * scale;
+var scaledWidth = width * scale;
+var scaledHeight = height * scale;
 
 draw_set_color(textColor);
 var textWidth = string_width(displayText);
 var textHeight = string_height(displayText);
 
-var Y = y + height/2 - textHeight/2;
+var Y = Y + scaledHeight/2 - textHeight/2;
 
 //Determining X-coordinate based on textAlign
-var X; var offset = 8;
+var offset = 8;
 switch(textAlign)
 {
     case TEXT_ALIGN_LEFT:
-        X = x + offset;
+        X = X + offset;
         break;
         
     case TEXT_ALIGN_CENTER:
-        X = x + width/2 - textWidth/2;
+        X = X + scaledWidth/2 - textWidth/2;
         break;
         
     case TEXT_ALIGN_RIGHT:
-        X = x + width - textWidth - offset;
+        X = X + scaledWidth - textWidth - offset;
 }
 draw_set_alpha(textAlpha);
 draw_text(X, Y, displayText);

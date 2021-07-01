@@ -76,6 +76,10 @@ testLabel2.font = fnt_UI_test;
           <argument>
             <kind>1</kind>
             <string>window_center();
+with(obj_master_UI)
+{
+    event_user(0);
+}
 </string>
           </argument>
         </arguments>

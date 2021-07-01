@@ -54,14 +54,14 @@ width = 200;
 height = 80;
 
 //Background
-bgColor = colors.white;
+bgColor = obj_UI_colors.white;
 displayBgColor = bgColor;
 bgAlpha = 1;
 
 //Border
 borderAlpha = 1;
 borderWidth = 2;
-borderColor = colors.black;
+borderColor = obj_UI_colors.black;
 displayBorderColor = borderColor;
 </string>
           </argument>
@@ -192,21 +192,28 @@ event_inherited();
           <argument>
             <kind>1</kind>
             <string>///Drawing Self
+var scale = obj_master_UI.scale;
+
+var X = x * scale;
+var Y = y * scale;
+var scaledWidth = width * scale;
+var scaledHeight = height * scale;
+var scaledBorderWidth = borderWidth * scale;
 
 //Background
 draw_set_alpha(bgAlpha);
 draw_set_color(displayBgColor);
 
-draw_rectangle(x + borderWidth + 1, y + borderWidth + 1, x+width - borderWidth, y+height - borderWidth, false);
+draw_rectangle(X + scaledBorderWidth + 1, Y + scaledBorderWidth + 1, X+scaledWidth - scaledBorderWidth, Y+scaledHeight - scaledBorderWidth, false);
 
 //Border
 draw_set_alpha(borderAlpha);
 draw_set_color(displayBorderColor);
 
-draw_line_width(x, y+borderWidth/2, x+width, y+borderWidth/2, borderWidth);
-draw_line_width(x+width - borderWidth/2, y+borderWidth, x+width - borderWidth/2, y+height - borderWidth, borderWidth);
-draw_line_width(x+width, y+height - borderWidth/2, x, y+height - borderWidth/2, borderWidth);
-draw_line_width(x + borderWidth/2, y+height - borderWidth, x + borderWidth/2, y + borderWidth, borderWidth);
+draw_line_width(X, Y+scaledBorderWidth/2, X+scaledWidth, Y+scaledBorderWidth/2, scaledBorderWidth);
+draw_line_width(X+scaledWidth - scaledBorderWidth/2, Y+scaledBorderWidth, X+scaledWidth - scaledBorderWidth/2, Y+scaledHeight - scaledBorderWidth, scaledBorderWidth);
+draw_line_width(X+scaledWidth, Y+scaledHeight - scaledBorderWidth/2, X, Y+scaledHeight - scaledBorderWidth/2, scaledBorderWidth);
+draw_line_width(X + scaledBorderWidth/2, Y+scaledHeight - scaledBorderWidth, X + scaledBorderWidth/2, Y + scaledBorderWidth, scaledBorderWidth);
 
 //Returning to normal drawing settings
 draw_set_alpha(1);
