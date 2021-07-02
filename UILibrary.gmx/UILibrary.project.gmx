@@ -61,6 +61,9 @@
           <script>scripts\scr_event_returnNormalBorder.gml</script>
           <script>scripts\scr_event_returnNormalTextColor.gml</script>
         </scripts>
+        <scripts name="Checkbox">
+          <script>scripts\scr_event_toggleChecked.gml</script>
+        </scripts>
       </scripts>
       <scripts name="Misc.">
         <script>scripts\scr_invoke_events.gml</script>
@@ -70,6 +73,7 @@
       <scripts name="Testing">
         <script>scripts\scr_event_setWhiteBorderAndText.gml</script>
         <script>scripts\scr_event_showTestMessage.gml</script>
+        <script>scripts\scr_event_updateStateLabel.gml</script>
       </scripts>
     </scripts>
   </scripts>

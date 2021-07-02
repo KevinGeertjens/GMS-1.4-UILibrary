@@ -49,11 +49,6 @@ event_inherited();
             <kind>1</kind>
             <string>///Base Properties
 
-//Size
-autosize = false;
-width = 80;
-height = 30;
-
 //Text
 text = "label1";
 displayText = text;
@@ -65,6 +60,13 @@ textAlign = TEXT_ALIGN_LEFT;
 
 //Font
 font = fnt_UI_default;
+
+//Size
+autosize = false;
+
+draw_set_font(font);
+width = string_width(text) + 16;
+height = string_height(text) + 10;
 
 //Background
 bgAlpha = 0;
@@ -157,15 +159,17 @@ var widthPadding = 16;
 var heightPadding = 10;
 
 //Autosized changed
-if(oldAutosize != autosize &amp;&amp; autosize == true)
+if(oldAutosize != autosize)
 {
-    draw_set_font(font);
-    var newWidth = string_width(text) + widthPadding;
-    var newHeight = string_height(text) + heightPadding;
-        
-    if(newWidth &gt; width) width = newWidth;
-    if(newHeight &gt; height) height = newHeight;
-    
+    if(autosize)
+    {
+        draw_set_font(font);
+        var newWidth = string_width(text) + widthPadding;
+        var newHeight = string_height(text) + heightPadding;
+            
+        if(newWidth &gt; width) width = newWidth;
+        if(newHeight &gt; height) height = newHeight;
+    }
     oldAutosize = autosize;
 }
 
@@ -184,8 +188,10 @@ if(text != oldText)
     
     scr_invoke_events(id, textAlteredEvents);
     oldText = text;
+    
 }
 
+//Font Changed
 if(font != oldFont)
 {
     if(autosize)
@@ -278,8 +284,8 @@ draw_set_font(obj_UI_fonts.fonts[? font]);
 var scale = obj_master_UI.scale;
 var X = x * scale;
 var Y = y * scale;
-var scaledWidth = width * scale;
-var scaledHeight = height * scale;
+var scaledWidth = round(width * scale);
+var scaledHeight = round(height * scale);
 
 var textWidth = string_width(displayText);
 var textHeight = string_height(displayText);

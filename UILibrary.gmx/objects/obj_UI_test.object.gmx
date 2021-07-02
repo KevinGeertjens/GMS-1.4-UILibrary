@@ -31,8 +31,8 @@ colors = obj_master_UI.colors;
 bgPanel = instance_create(10, 10, obj_UI_panel);
 bgPanel.bgColor = colors.lightBlue;
 bgPanel.borderWidth = 4;
-bgPanel.width = 300;
-bgPanel.height = 150;
+bgPanel.width = 620;
+bgPanel.height = 340;
 bgPanel.depth = 0;
 
 testLabel = instance_create(bgPanel.x + 8, bgPanel.y + 8, obj_UI_label);
@@ -75,6 +75,19 @@ ds_list_add(testButton2.mouseEnterEvents, scr_event_setWhiteBorderAndText);
 ds_list_delete(testButton2.mouseEnterEvents, ds_list_find_index(testButton2.mouseEnterEvents, scr_event_highlightText));
 ds_list_delete(testButton2.mouseEnterEvents, ds_list_find_index(testButton2.mouseEnterEvents, scr_event_highlightBorder));
 
+testCheckBox = instance_create(testButton.x, testButton2.y + testButton2.height + 10, obj_UI_checkbox);
+testCheckBox.depth = -1;
+testCheckBox.text = "TestCheckBox";
+testCheckBox.autosize = true;
+testCheckBox.borderWidth = 2;
+testCheckBox.bgColor = colors.pink;
+testCheckBox.bgAlpha = 0.75;
+ds_list_add(testCheckBox.clickEvents, scr_event_updateStateLabel);
+
+stateLabel = instance_create(testCheckBox.x + testCheckBox.width + 5, testCheckBox.y, obj_UI_label);
+stateLabel.depth = -1;
+stateLabel.text = string(testCheckBox.checked);
+
 alarm[1] = 2;
 
 
@@ -103,7 +116,6 @@ alarm[1] = 2;
           <argument>
             <kind>1</kind>
             <string>///Positioning elements
-show_debug_message("Positioning");
 bgPanel.x = 10;
 bgPanel.y = 10;
 
@@ -122,6 +134,12 @@ testButton.y = testLabel3.y + testLabel3.height + 10;
 testButton2.x = testButton.x + testButton.width + 5;
 testButton2.y = testButton.y;
 
+testCheckBox.x = testButton.x;
+testCheckBox.y = testButton2.y + testButton2.height + 10;
+
+stateLabel.height = testCheckBox.height;
+stateLabel.x = testCheckBox.x + testCheckBox.width + 5;
+stateLabel.y = testCheckBox.y;
 
 
 </string>
@@ -178,7 +196,7 @@ if(keyboard_check_pressed(ord("F")))
 {
     if(window_get_width() == 1280) window_set_size(960, 540);
     else window_set_size(1280, 720);
-
+    
     alarm[0] = 1;
 }
 </string>

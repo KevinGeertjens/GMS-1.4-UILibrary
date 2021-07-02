@@ -7,7 +7,305 @@
   <persistent>0</persistent>
   <parentName>obj_UI_button</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parent Event
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Base Properties
+
+//Size
+width = 80;
+height = 15;
+
+boxWidth = 15;
+boxHeight = 15;
+
+//Checked
+checked = false;
+
+//Text
+text = "Checkbox";
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Event Setup
+ds_list_add(clickEvents, scr_event_toggleChecked);
+
+boxWidthAlteredEvents = ds_list_create();
+ds_list_add(boxWidthAlteredEvents, scr_event_reloadText);
+oldBoxWidth = boxWidth;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Event Invokations
+
+var widthPadding = 6;
+var heightPadding = 10;
+
+//Autosized changed
+if(oldAutosize != autosize)
+{
+    if(autosize)
+    {
+        draw_set_font(font);
+        var newWidth = string_width(text) + widthPadding + boxWidth;
+        var newHeight = string_height(text) + heightPadding;
+        if(boxWidth &gt; newHeight) newHeight = boxWidth;
+            
+        if(newWidth &gt; width) width = newWidth;
+        if(newHeight &gt; height) height = newHeight;
+    }
+    oldAutosize = autosize;
+}
+
+//TextChanged &amp; SizeChanged
+if(text != oldText)
+{
+    if(autosize)
+    {
+        draw_set_font(font);
+        var newWidth = string_width(text) + widthPadding + boxWidth;
+        var newHeight = string_height(text) + heightPadding;
+        if(boxWidth &gt; newHeight) newHeight = boxWidth;
+        
+        if(newWidth &gt; width) width = newWidth;
+        if(newHeight &gt; height) height = newHeight;
+    }
+    
+    scr_invoke_events(id, textAlteredEvents);
+    oldText = text;
+    
+}
+
+//Font Changed
+if(font != oldFont)
+{
+    if(autosize)
+    {
+        draw_set_font(font);
+        var newWidth = string_width(text) + widthPadding + boxWidth;
+        var newHeight = string_height(text) + heightPadding;
+        if(boxWidth &gt; newHeight) newHeight = boxWidth;
+        
+        if(newWidth &gt; width) width = newWidth;
+        if(newHeight &gt; height) height = newHeight;
+    }
+    
+    scr_invoke_events(id, textAlteredEvents);
+    oldFont = font;
+}
+
+//TextColorChanged
+if(textColor != oldTextColor)
+{
+    scr_invoke_events(id, textColorAlteredEvents);
+    oldTextColor = textColor;
+}
+
+//BoxWidth changed
+if(oldBoxWidth != boxWidth)
+{
+    var dWidth = oldBoxWidth - boxWidth;
+    if(boxWidth &gt; height) boxWidth = oldBoxWidth;
+    
+    scr_invoke_events(id, boxWidthAlteredEvents);
+    oldBoxWidth = boxWidth;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parent Event
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Drawing Settings
+draw_set_alpha(1);
+draw_set_color(c_white);
+draw_set_font(obj_UI_fonts.fonts[? font]);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Drawing Self
+var scale = obj_master_UI.scale;
+var X = round(x * scale);
+var Y = round(y * scale);
+var scaledWidth = round(width * scale);
+var scaledHeight = round(height * scale);
+var scaledBorderWidth = round(borderWidth * scale);
+var scaledBoxWidth = round(boxWidth * scale);
+var boxOffset = (scaledHeight - scaledBoxWidth)/2;
+
+
+//Box Background
+draw_set_alpha(bgAlpha);
+draw_set_color(displayBgColor);
+
+draw_rectangle(X + scaledBorderWidth + 1, Y + scaledBorderWidth + 1 + boxOffset, X+scaledBoxWidth - scaledBorderWidth, Y+scaledBoxWidth - scaledBorderWidth + boxOffset, false);
+
+//Box Border
+draw_set_alpha(borderAlpha);
+draw_set_color(displayBorderColor);
+
+draw_line_width(X, Y+scaledBorderWidth/2 + boxOffset, X+scaledBoxWidth, Y+scaledBorderWidth/2 + boxOffset, scaledBorderWidth);
+draw_line_width(X+scaledBoxWidth - scaledBorderWidth/2, Y+scaledBorderWidth + boxOffset, X+scaledBoxWidth - scaledBorderWidth/2, Y+scaledBoxWidth - scaledBorderWidth + boxOffset, scaledBorderWidth);
+draw_line_width(X+scaledBoxWidth, Y+scaledBoxWidth - scaledBorderWidth/2 + boxOffset, X, Y+scaledBoxWidth - scaledBorderWidth/2 + boxOffset, scaledBorderWidth);
+draw_line_width(X + scaledBorderWidth/2, Y+scaledBoxWidth - scaledBorderWidth + boxOffset, X + scaledBorderWidth/2, Y + scaledBorderWidth + boxOffset, scaledBorderWidth);
+
+//Checkmark
+if(checked)
+{
+    scaledBorderWidth = clamp(ceil(scaledBorderWidth * 0.5), 1, scaledBorderWidth);
+    draw_set_color(displayBorderColor);
+    draw_line_width(X + scaledBorderWidth, Y + scaledBorderWidth + boxOffset, X+scaledBoxWidth - scaledBorderWidth, Y+scaledBoxWidth - scaledBorderWidth + boxOffset, scaledBorderWidth);
+    draw_line_width(X + scaledBorderWidth, Y+scaledBoxWidth - scaledBorderWidth + boxOffset, X+scaledBoxWidth - scaledBorderWidth, Y + scaledBorderWidth + boxOffset, scaledBorderWidth);
+}
+
+//Text
+var textWidth = string_width(displayText);
+var textHeight = string_height(displayText);
+
+var Y = Y + scaledHeight/2 - textHeight/2;
+
+//Determining X-coordinate based on textAlign
+var textOffset = 6 * scale;
+X = X + textOffset + scaledBoxWidth;
+
+draw_set_alpha(textAlpha);
+draw_set_color(displayTextColor);
+draw_text(round(X), round(Y), displayText);
+draw_set_alpha(1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>
