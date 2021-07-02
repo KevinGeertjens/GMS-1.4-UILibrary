@@ -47,13 +47,11 @@ testLabel2.depth = -1;
 testLabel2.bgColor = colors.green;
 testLabel2.bgAlpha = 0.4;
 testLabel2.text = "TestLabel2";
-//testLabel2.autosize = true;
+testLabel2.autosize = true;
 testLabel2.font = fnt_UI_test;
 
 testLabel3 = instance_create(testLabel.x, testLabel2.y + testLabel2.height + 5, obj_UI_label);
 testLabel3.depth = -1;
-testLabel3.bgColor = colors.blue;
-testLabel3.bgAlpha = 0.4;
 testLabel3.text = "A label with a smaller font";
 testLabel3.autosize = true;
 testLabel3.font = fnt_UI_test_small;
@@ -61,6 +59,68 @@ testLabel3.textColor = colors.red;
 ds_list_add(testLabel3.mouseEnterEvents, scr_event_highlightText);
 ds_list_add(testLabel3.mouseLeaveEvents, scr_event_returnNormalTextColor);
 
+testButton = instance_create(testLabel.x, testLabel3.y + testLabel3.height + 10, obj_UI_button);
+testButton.depth = -1;
+testButton.text = "TestButton";
+ds_list_add(testButton.clickEvents, scr_event_showTestMessage);
+
+testButton2 = instance_create(testButton.x + testButton.width + 5, testButton.y, obj_UI_button);
+testButton2.depth = -1;
+testButton2.text = "TestButton2 - Very Cool";
+testButton2.bgColor = colors.purple;
+testButton2.bgAlpha = 0.5;
+testButton2.autosize = true;
+ds_list_add(testButton2.clickEvents, scr_event_showTestMessage);
+ds_list_add(testButton2.mouseEnterEvents, scr_event_setWhiteBorderAndText);
+ds_list_delete(testButton2.mouseEnterEvents, ds_list_find_index(testButton2.mouseEnterEvents, scr_event_highlightText));
+ds_list_delete(testButton2.mouseEnterEvents, ds_list_find_index(testButton2.mouseEnterEvents, scr_event_highlightBorder));
+
+alarm[1] = 2;
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Positioning elements
+show_debug_message("Positioning");
+bgPanel.x = 10;
+bgPanel.y = 10;
+
+testLabel.x = bgPanel.x + 8;
+testLabel.y = bgPanel.y + 8;
+
+testLabel2.x = testLabel.x + testLabel.width + 4;
+testLabel2.y = testLabel.y;
+
+testLabel3.x = testLabel.x;
+testLabel3.y = testLabel2.y + testLabel2.height + 5;
+
+testButton.x = testLabel.x;
+testButton.y = testLabel3.y + testLabel3.height + 10;
+
+testButton2.x = testButton.x + testButton.width + 5;
+testButton2.y = testButton.y;
 
 
 
@@ -116,11 +176,10 @@ with(obj_master_UI)
             <string>///Test Input
 if(keyboard_check_pressed(ord("F")))
 {
-    fullscreen = window_get_fullscreen();
-    window_set_fullscreen(!fullscreen);
+    if(window_get_width() == 1280) window_set_size(960, 540);
+    else window_set_size(1280, 720);
+
     alarm[0] = 1;
-    
-    
 }
 </string>
           </argument>

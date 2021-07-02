@@ -47,19 +47,29 @@
   <scripts name="scripts">
     <scripts name="UILibrary">
       <scripts name="Base Events">
-        <script>scripts\scr_event_reloadBG.gml</script>
-        <script>scripts\scr_event_reloadTextColor.gml</script>
-        <script>scripts\scr_event_reloadBorder.gml</script>
-        <script>scripts\scr_event_highlightBG.gml</script>
-        <script>scripts\scr_event_highlightText.gml</script>
-        <script>scripts\scr_event_returnNormalBG.gml</script>
-        <script>scripts\scr_event_returnNormalTextColor.gml</script>
-        <script>scripts\scr_event_reloadText.gml</script>
+        <scripts name="Property Reloading">
+          <script>scripts\scr_event_reloadText.gml</script>
+          <script>scripts\scr_event_reloadBorder.gml</script>
+          <script>scripts\scr_event_reloadTextColor.gml</script>
+          <script>scripts\scr_event_reloadBG.gml</script>
+        </scripts>
+        <scripts name="Highlight / ReturnNormal">
+          <script>scripts\scr_event_highlightBG.gml</script>
+          <script>scripts\scr_event_highlightBorder.gml</script>
+          <script>scripts\scr_event_highlightText.gml</script>
+          <script>scripts\scr_event_returnNormalBG.gml</script>
+          <script>scripts\scr_event_returnNormalBorder.gml</script>
+          <script>scripts\scr_event_returnNormalTextColor.gml</script>
+        </scripts>
       </scripts>
       <scripts name="Misc.">
         <script>scripts\scr_invoke_events.gml</script>
         <script>scripts\scr_string_trim.gml</script>
         <script>scripts\scr_resize_font.gml</script>
+      </scripts>
+      <scripts name="Testing">
+        <script>scripts\scr_event_setWhiteBorderAndText.gml</script>
+        <script>scripts\scr_event_showTestMessage.gml</script>
       </scripts>
     </scripts>
   </scripts>

@@ -77,7 +77,7 @@ controls = ds_list_create();
             <kind>1</kind>
             <string>///Adjusting GUI size to fit window
 var originalWidth = 640;
-display_set_gui_maximise();
+display_set_gui_size(window_get_width(), window_get_height());
 
 //Determining scale factor
 scale = display_get_gui_width() / originalWidth;
