@@ -41,7 +41,9 @@
   </datafiles>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\spr_keyboardCursor</sprite>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -90,6 +92,9 @@
         <script>scripts\scr_event_updateValueLabel.gml</script>
       </scripts>
     </scripts>
+    <scripts name="Graphics Controller">
+      <script>scripts\scr_progress_animation.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <fonts name="UILibrary">
@@ -111,18 +116,25 @@
         <object>objects\obj_UI_button</object>
         <object>objects\obj_UI_checkbox</object>
         <object>objects\obj_UI_slider</object>
-        <object>objects\obj_UI_textbox</object>
         <object>objects\obj_UI_spritebox</object>
         <object>objects\obj_UI_progressbar</object>
         <objects name="Combobox">
           <object>objects\obj_UI_combobox</object>
           <object>objects\obj_UI_comboboxItem</object>
         </objects>
+        <objects name="Textbox">
+          <object>objects\obj_UI_textbox</object>
+          <object>objects\obj_UI_keyboardCursor</object>
+        </objects>
       </objects>
       <objects name="Masters">
         <object>objects\obj_master_UI</object>
       </objects>
       <object>objects\obj_UI_test</object>
+    </objects>
+    <objects name="Physics">
+      <object>objects\obj_deltatime</object>
+      <object>objects\obj_animated</object>
     </objects>
   </objects>
   <rooms name="rooms">
