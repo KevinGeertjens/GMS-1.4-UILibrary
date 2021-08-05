@@ -5,18 +5,249 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_UI_button</parentName>
+  <parentName>obj_UI_control</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parent Event
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Base Properties
+
+//Size
+width = 150;
+height = 12;
+
+barWidth = 2;
+blockWidth = 6;
+blockHeight = height - 4;
+
+//Alpha
+barAlpha = 1;
+blockAlpha = 1;
+
+//Colors
+barColor = obj_UI_colors.white;
+blockColor = obj_UI_colors.white;
+
+displayBarColor = barColor;
+displayBlockColor = blockColor;
+
+//Value
+value = 50;
+minValue = 0;
+maxValue = 100;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Event Setup
+ds_list_add(dragEvents, scr_event_changeValue);
+ds_list_add(mouseEnterEvents, scr_event_darkenSlider);
+ds_list_add(mouseLeaveEvents, scr_event_returnNormalSlider);
+
+blockColorChangedEvents = ds_list_create();
+barColorChangedEvents = ds_list_create();
+oldBlockColor = blockColor;
+oldBarColor = barColor;
+
+ds_list_add(blockColorChangedEvents, scr_event_reloadSlider);
+ds_list_add(barColorChangedEvents, scr_event_reloadSlider);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parent Event
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Event Invokations
+
+if(oldBarColor != barColor)
+{
+    scr_invoke_events(id, barColorChangedEvents);
+    oldBarColor = barColor;
+}
+
+if(oldBlockColor != blockColor)
+{
+    scr_invoke_events(id, blockColorChangedEvents);
+    oldBlockColor = blockColor;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parent Event
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Drawing Self
+var scale = obj_master_UI.scale;
+
+var X = x * scale;
+var Y = y * scale;
+var scaledWidth = width * scale;
+var scaledHeight = height * scale;
+var scaledBlockWidth = blockWidth * scale;
+var scaledBlockHeight = blockHeight * scale;
+var scaledBarWidth = barWidth * scale;
+
+//Bar
+draw_set_color(displayBarColor);
+draw_set_alpha(barAlpha);
+var barY = Y + scaledHeight/2;
+draw_line_width(X, barY, X + scaledWidth, barY, scaledBarWidth);
+
+//Block
+var totalRange = maxValue - minValue;
+var progression = value - minValue;
+var percentage = progression / totalRange;
+
+var blockX = X+scaledBlockWidth/2 + (scaledWidth - scaledBlockWidth) * percentage;
+var blockY = Y + scaledHeight/2;
+draw_set_color(displayBlockColor);
+draw_set_alpha(blockAlpha);
+draw_rectangle(blockX - scaledBlockWidth/2, blockY-scaledBlockHeight/2, blockX + scaledBlockWidth/2, blockY+scaledBlockHeight/2, false);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>
-  <PhysicsObjectDensity>0,5</PhysicsObjectDensity>
-  <PhysicsObjectRestitution>0,100000001490116</PhysicsObjectRestitution>
+  <PhysicsObjectDensity>0.5</PhysicsObjectDensity>
+  <PhysicsObjectRestitution>0.100000001490116</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
-  <PhysicsObjectLinearDamping>0,100000001490116</PhysicsObjectLinearDamping>
-  <PhysicsObjectAngularDamping>0,100000001490116</PhysicsObjectAngularDamping>
-  <PhysicsObjectFriction>0,200000002980232</PhysicsObjectFriction>
+  <PhysicsObjectLinearDamping>0.100000001490116</PhysicsObjectLinearDamping>
+  <PhysicsObjectAngularDamping>0.100000001490116</PhysicsObjectAngularDamping>
+  <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints/>

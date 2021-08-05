@@ -49,6 +49,7 @@
       <scripts name="Base Events">
         <scripts name="Property Reloading">
           <script>scripts\scr_event_reloadText.gml</script>
+          <script>scripts\scr_event_reloadSlider.gml</script>
           <script>scripts\scr_event_reloadBorder.gml</script>
           <script>scripts\scr_event_reloadTextColor.gml</script>
           <script>scripts\scr_event_reloadBG.gml</script>
@@ -57,12 +58,17 @@
           <script>scripts\scr_event_highlightBG.gml</script>
           <script>scripts\scr_event_highlightBorder.gml</script>
           <script>scripts\scr_event_highlightText.gml</script>
+          <script>scripts\scr_event_darkenSlider.gml</script>
           <script>scripts\scr_event_returnNormalBG.gml</script>
           <script>scripts\scr_event_returnNormalBorder.gml</script>
           <script>scripts\scr_event_returnNormalTextColor.gml</script>
+          <script>scripts\scr_event_returnNormalSlider.gml</script>
         </scripts>
         <scripts name="Checkbox">
           <script>scripts\scr_event_toggleChecked.gml</script>
+        </scripts>
+        <scripts name="Slider">
+          <script>scripts\scr_event_changeValue.gml</script>
         </scripts>
       </scripts>
       <scripts name="Misc.">
@@ -74,6 +80,7 @@
         <script>scripts\scr_event_setWhiteBorderAndText.gml</script>
         <script>scripts\scr_event_showTestMessage.gml</script>
         <script>scripts\scr_event_updateStateLabel.gml</script>
+        <script>scripts\scr_event_updateValueLabel.gml</script>
       </scripts>
     </scripts>
   </scripts>

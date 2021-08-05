@@ -88,6 +88,16 @@ stateLabel = instance_create(testCheckBox.x + testCheckBox.width + 5, testCheckB
 stateLabel.depth = -1;
 stateLabel.text = string(testCheckBox.checked);
 
+testSlider = instance_create(testCheckBox.x, testCheckBox.y + testCheckBox.height + 10, obj_UI_slider);
+testSlider.depth = -1;
+testSlider.blockColor = obj_UI_colors.green;
+testSlider.barColor = obj_UI_colors.blue;
+ds_list_add(testSlider.dragEvents, scr_event_updateValueLabel);
+
+valueLabel = instance_create(testSlider.x + testSlider.width + 5, testSlider.y, obj_UI_label);
+valueLabel.depth = -1;
+valueLabel.text = string(testSlider.value);
+
 alarm[1] = 2;
 
 
@@ -140,6 +150,13 @@ testCheckBox.y = testButton2.y + testButton2.height + 10;
 stateLabel.height = testCheckBox.height;
 stateLabel.x = testCheckBox.x + testCheckBox.width + 5;
 stateLabel.y = testCheckBox.y;
+
+testSlider.x = testCheckBox.x;
+testSlider.y = testCheckBox.y + testCheckBox.height + 10;
+
+var heightDifference = valueLabel.height - testSlider.height;
+valueLabel.x = testSlider.x + testSlider.width + 5;
+valueLabel.y = testSlider.y - heightDifference/2;
 
 
 </string>
@@ -208,12 +225,12 @@ if(keyboard_check_pressed(ord("F")))
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>
-  <PhysicsObjectDensity>0,5</PhysicsObjectDensity>
-  <PhysicsObjectRestitution>0,100000001490116</PhysicsObjectRestitution>
+  <PhysicsObjectDensity>0.5</PhysicsObjectDensity>
+  <PhysicsObjectRestitution>0.100000001490116</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
-  <PhysicsObjectLinearDamping>0,100000001490116</PhysicsObjectLinearDamping>
-  <PhysicsObjectAngularDamping>0,100000001490116</PhysicsObjectAngularDamping>
-  <PhysicsObjectFriction>0,200000002980232</PhysicsObjectFriction>
+  <PhysicsObjectLinearDamping>0.100000001490116</PhysicsObjectLinearDamping>
+  <PhysicsObjectAngularDamping>0.100000001490116</PhysicsObjectAngularDamping>
+  <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints/>
