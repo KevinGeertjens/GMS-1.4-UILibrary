@@ -112,6 +112,12 @@ ds_list_add(testComboBox.items, "A fairly large test string");
 ds_list_add(testComboBox.items, "Another item");
 ds_list_add(testComboBox.items, "item5");
 
+//Comboboxes
+testComboBox2 = instance_create(testComboBox.x + testComboBox.width + 5, testComboBox.y, obj_UI_combobox);
+testComboBox2.autosize = true;
+testComboBox2.depth = -1;
+
+
 alarm[1] = 2;
 
 
@@ -174,8 +180,9 @@ valueLabel.y = testSlider.y - heightDifference/2;
 
 testComboBox.x = testSlider.x;
 testComboBox.y = testSlider.y + testSlider.height + 5;
-var scale = obj_master_UI.scale;
-show_debug_message("Combobox location X: " + string(testComboBox.x*scale) + ", Y: " + string(testComboBox.y*scale));
+
+testComboBox2.x = testComboBox.x + testComboBox.width + 5;
+testComboBox2.y = testComboBox.y;
 
 </string>
           </argument>

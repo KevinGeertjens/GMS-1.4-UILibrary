@@ -182,8 +182,6 @@ for(var i = 0; i &lt; ds_list_size(displayItems); i++)
     label.x = x;
     label.y = y + height + offset + i*label.height;
 }
-
-show_debug_message("Updated positions");
 </string>
           </argument>
         </arguments>
@@ -383,7 +381,6 @@ if(point_in_rectangle(mouseX, mouseY, X, Y+scaledHeight, X + scaledWidth, Y + sc
             <string>///Event Invokations
 if(ds_list_size(oldItems) != ds_list_size(items))
 {
-    show_debug_message("Items changed");
     scr_invoke_events(id, itemsChangedEvents);
     ds_list_copy(oldItems, items);
 }
@@ -422,7 +419,12 @@ var scaledBorderWidth = borderWidth * scale;
 
 for(var i = 0; i &lt; ds_list_size(displayItems); i++)
 {
-    with(displayItems[| i]) depth = other.depth + 1;
+    with(displayItems[| i]) 
+    {
+        //depth = other.depth + 1;
+        var index = i - other.displayIndex;
+        y = -1000;
+    }
     if(i &gt;= displayIndex &amp;&amp; i &lt; displayIndex + itemCapacity)
     {
         if(showDropdown) with(displayItems[| i]) 
