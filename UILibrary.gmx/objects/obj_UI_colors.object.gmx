@@ -40,6 +40,7 @@ purple = make_color_rgb(127, 0, 255);
 pink = make_color_rgb(255, 0, 255);
 
 black = make_color_rgb(0, 0, 0);
+gray = make_color_rgb(130, 130, 130);
 white = make_color_rgb(255, 255, 255);
 </string>
           </argument>

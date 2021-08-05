@@ -28,6 +28,7 @@
             <string>///Initializing Test Scenario
 colors = obj_master_UI.colors;
 
+//Panels
 bgPanel = instance_create(10, 10, obj_UI_panel);
 bgPanel.bgColor = colors.lightBlue;
 bgPanel.borderWidth = 4;
@@ -35,6 +36,7 @@ bgPanel.width = 620;
 bgPanel.height = 340;
 bgPanel.depth = 0;
 
+//Labels
 testLabel = instance_create(bgPanel.x + 8, bgPanel.y + 8, obj_UI_label);
 testLabel.depth = -1;
 testLabel.bgAlpha = 0.4;
@@ -59,6 +61,7 @@ testLabel3.textColor = colors.red;
 ds_list_add(testLabel3.mouseEnterEvents, scr_event_highlightText);
 ds_list_add(testLabel3.mouseLeaveEvents, scr_event_returnNormalTextColor);
 
+//Buttons
 testButton = instance_create(testLabel.x, testLabel3.y + testLabel3.height + 10, obj_UI_button);
 testButton.depth = -1;
 testButton.text = "TestButton";
@@ -75,6 +78,7 @@ ds_list_add(testButton2.mouseEnterEvents, scr_event_setWhiteBorderAndText);
 ds_list_delete(testButton2.mouseEnterEvents, ds_list_find_index(testButton2.mouseEnterEvents, scr_event_highlightText));
 ds_list_delete(testButton2.mouseEnterEvents, ds_list_find_index(testButton2.mouseEnterEvents, scr_event_highlightBorder));
 
+//Checkboxes
 testCheckBox = instance_create(testButton.x, testButton2.y + testButton2.height + 10, obj_UI_checkbox);
 testCheckBox.depth = -1;
 testCheckBox.text = "TestCheckBox";
@@ -88,6 +92,7 @@ stateLabel = instance_create(testCheckBox.x + testCheckBox.width + 5, testCheckB
 stateLabel.depth = -1;
 stateLabel.text = string(testCheckBox.checked);
 
+//Sliders
 testSlider = instance_create(testCheckBox.x, testCheckBox.y + testCheckBox.height + 10, obj_UI_slider);
 testSlider.depth = -1;
 testSlider.blockColor = obj_UI_colors.green;
@@ -97,6 +102,15 @@ ds_list_add(testSlider.dragEvents, scr_event_updateValueLabel);
 valueLabel = instance_create(testSlider.x + testSlider.width + 5, testSlider.y, obj_UI_label);
 valueLabel.depth = -1;
 valueLabel.text = string(testSlider.value);
+
+//Comboboxes
+testComboBox = instance_create(testSlider.x, testSlider.y + testSlider.height + 5, obj_UI_combobox);
+testComboBox.autosize = true;
+testComboBox.depth = -1;
+testComboBox.items[| 0] = "TestItem1";
+ds_list_add(testComboBox.items, "A fairly large test string");
+ds_list_add(testComboBox.items, "Another item");
+ds_list_add(testComboBox.items, "item5");
 
 alarm[1] = 2;
 
@@ -158,6 +172,10 @@ var heightDifference = valueLabel.height - testSlider.height;
 valueLabel.x = testSlider.x + testSlider.width + 5;
 valueLabel.y = testSlider.y - heightDifference/2;
 
+testComboBox.x = testSlider.x;
+testComboBox.y = testSlider.y + testSlider.height + 5;
+var scale = obj_master_UI.scale;
+show_debug_message("Combobox location X: " + string(testComboBox.x*scale) + ", Y: " + string(testComboBox.y*scale));
 
 </string>
           </argument>

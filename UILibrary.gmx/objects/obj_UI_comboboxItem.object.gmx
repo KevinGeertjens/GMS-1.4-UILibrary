@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_UI_label</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,16 +25,34 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Parent Event
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Base Properties
+bgAlpha = 1;
+borderAlpha = 1;
 
-//Size
-width = 0;
-height = 0;
-
-//Depth
-depth = 0;
-
-
+parentCombobox = -1;
+listIndex = 0;
 </string>
           </argument>
         </arguments>
@@ -56,42 +74,12 @@ depth = 0;
           <argument>
             <kind>1</kind>
             <string>///Event Setup
-clickEvents = ds_list_create();
-dragEvents = ds_list_create();
-dragging = false;
+ds_list_add(mouseEnterEvents, scr_event_highlightText);
+ds_list_add(mouseEnterEvents, scr_event_highlightBorder);
+ds_list_add(mouseLeaveEvents, scr_event_returnNormalTextColor);
+ds_list_add(mouseLeaveEvents, scr_event_returnNormalBorder);
 
-scrollUpEvents = ds_list_create();
-scrollDownEvents = ds_list_create();
-
-mouseEnterEvents = ds_list_create();
-mouseLeaveEvents = ds_list_create();
-mouseInside = false;
-
-sizeAlteredEvents = ds_list_create();
-oldWidth = width;
-oldHeight = height;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Adding Self to master controls list
-ds_list_add(obj_master_UI.controls, id);
+ds_list_add(clickEvents, scr_event_updateComboboxValue);
 </string>
           </argument>
         </arguments>
@@ -114,86 +102,8 @@ ds_list_add(obj_master_UI.controls, id);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Defining mouse position on GUI layer
-mouseX = device_mouse_x_to_gui(0); 
-mouseY = device_mouse_y_to_gui(0);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Invoking Events
-var scale = obj_master_UI.scale;
-var X = x * scale;
-var Y = y * scale;
-var scaledWidth = width * scale;
-var scaledHeight = height * scale;
-
-//Click
-if(point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight) &amp;&amp; mouse_check_button_pressed(mb_left))
-{
-    dragging = true;
-    scr_invoke_events(id, clickEvents);
-}
-
-if(dragging)
-{
-    if(mouse_check_button(mb_left)) 
-    {
-        scr_invoke_events(id, dragEvents);
-    }
-    else 
-    {
-        dragging = false;
-    }
-}
-
-//Scrolling
-if(point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight) &amp;&amp; mouse_wheel_up())
-{
-    scr_invoke_events(id, scrollUpEvents);
-}
-if(point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight) &amp;&amp; mouse_wheel_down())
-{
-    scr_invoke_events(id, scrollDownEvents);
-}
-
-//SizeAltered
-if(oldWidth != width || oldHeight != height)
-{
-    scr_invoke_events(id, sizeAlteredEvents);
-    oldWidth = width;
-    oldHeight = height;
-}
-
-//MouseEnter
-if(!mouseInside &amp;&amp; point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight))
-{
-    scr_invoke_events(id, mouseEnterEvents);
-    mouseInside = true;
-    
-}
-//MouseLeave
-if(mouseInside &amp;&amp; !point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight))
-{
-    scr_invoke_events(id, mouseLeaveEvents);
-    mouseInside = false;
-}
+            <string>///Parent Event
+event_inherited();
 </string>
           </argument>
         </arguments>
@@ -216,42 +126,8 @@ if(mouseInside &amp;&amp; !point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWi
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Drawing Settings
-draw_set_alpha(1);
-draw_set_colour(c_white);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Debug BG
-
-/*
-var scale = obj_master_UI.scale;
-var X = x * scale;
-var Y = y * scale;
-var scaledWidth = width * scale;
-var scaledHeight = height * scale;
-
-draw_set_alpha(0.5);
-draw_set_color(c_red);
-draw_rectangle(X, Y, X+scaledWidth, Y+scaledHeight, false);
-*/
+            <string>///Parent Event
+event_inherited();
 </string>
           </argument>
         </arguments>

@@ -70,6 +70,13 @@
         <scripts name="Slider">
           <script>scripts\scr_event_changeValue.gml</script>
         </scripts>
+        <scripts name="Combobox">
+          <script>scripts\scr_event_toggleDropdownBox.gml</script>
+          <script>scripts\scr_event_updateComboboxItems.gml</script>
+          <script>scripts\scr_event_updateComboboxValue.gml</script>
+          <script>scripts\scr_event_moveComboboxListUp.gml</script>
+          <script>scripts\scr_event_moveComboboxListDown.gml</script>
+        </scripts>
       </scripts>
       <scripts name="Misc.">
         <script>scripts\scr_invoke_events.gml</script>
@@ -104,10 +111,13 @@
         <object>objects\obj_UI_button</object>
         <object>objects\obj_UI_checkbox</object>
         <object>objects\obj_UI_slider</object>
-        <object>objects\obj_UI_combobox</object>
         <object>objects\obj_UI_textbox</object>
         <object>objects\obj_UI_spritebox</object>
         <object>objects\obj_UI_progressbar</object>
+        <objects name="Combobox">
+          <object>objects\obj_UI_combobox</object>
+          <object>objects\obj_UI_comboboxItem</object>
+        </objects>
       </objects>
       <objects name="Masters">
         <object>objects\obj_master_UI</object>

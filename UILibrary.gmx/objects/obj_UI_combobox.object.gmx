@@ -7,7 +7,519 @@
   <persistent>0</persistent>
   <parentName>obj_UI_button</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parent Event
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Base Properties
+
+//Itemlist
+items = ds_list_create();
+items[| 0] = "Item1";
+items[| 1] = "Item2";
+
+
+text = items[| 0];
+selectedIndex = 0;
+displayIndex = 0;
+
+
+//Dropdown box
+dropdownHeight = height * 3;
+showDropdown = false;
+displayItems = ds_list_create();
+itemOffset = 5;
+itemCapacity = 4;
+
+//Scrollbar
+scrollbarColor = obj_UI_colors.gray;
+scrollbarAlpha = 1;
+scrollbarWidth = 2;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Event Setup
+ds_list_add(clickEvents, scr_event_toggleDropdownBox);
+
+ds_list_add(sizeAlteredEvents, scr_event_updateComboboxItems);
+ds_list_add(bgColorChangedEvents, scr_event_updateComboboxItems);
+ds_list_add(textColorAlteredEvents, scr_event_updateComboboxItems);
+ds_list_add(fontAlteredEvents, scr_event_updateComboboxItems);
+
+ds_list_add(scrollUpEvents, scr_event_moveComboboxListUp);
+ds_list_add(scrollDownEvents, scr_event_moveComboboxListDown);
+
+itemsChangedEvents = ds_list_create();
+ds_list_add(itemsChangedEvents, scr_event_updateComboboxItems);
+
+oldItems = ds_list_create();
+ds_list_copy(oldItems, items);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Item List
+for(var i = 0; i &lt; ds_list_size(items); i++)
+{
+    var item = items[| i];
+    var label = instance_create(x, y + height + itemOffset, obj_UI_comboboxItem);
+    label.text = item;
+    label.bgColor = bgColor;
+    label.font = font;
+    label.width = width - scrollbarWidth;
+    label.height = (dropdownHeight - 2*itemOffset - itemCapacity+1) / itemCapacity;
+    label.depth = depth + 1;
+    label.texstColor = textColor;
+    label.borderAlpha = 0;
+    
+    label.parentCombobox = id;
+    label.listIndex = i;
+    
+    ds_list_add(displayItems, label);
+        
+    label.y += i*label.height;
+}
+
+alarm[0] = 3;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Updating Item Positions
+var offset = 5;
+for(var i = 0; i &lt; ds_list_size(displayItems); i++)
+{
+    var label = displayItems[| i];
+    label.x = x;
+    label.y = y + height + offset + i*label.height;
+}
+
+show_debug_message("Updated positions");
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Autosize Override
+
+var widthPadding = 16;
+var heightPadding = 10;
+
+//Autosized changed
+if(oldAutosize != autosize)
+{
+    if(autosize)
+    {
+        draw_set_font(font);
+        
+        var newWidth = 0;
+        var newHeight = 0;
+        
+        for(var i = 0; i &lt; ds_list_size(items); i++)
+        {
+            var textWidth = string_width(items[| i]);
+            var textHeight = string_height(items[| i]);
+            if(textWidth &gt; newWidth) newWidth = textWidth;
+            if(textHeight &gt; newHeight) newHeight = textHeight;
+        }
+        
+        newWidth += widthPadding;
+        newHeight += heightPadding;
+    
+            
+        if(newWidth &gt; width) width = newWidth;
+        if(newHeight &gt; height) height = newHeight;
+    }
+    oldAutosize = autosize;
+}
+
+//TextChanged &amp; SizeChanged
+if(text != oldText)
+{
+    if(autosize)
+    {
+        draw_set_font(font);
+        
+        var newWidth = 0;
+        var newHeight = 0;
+        
+        for(var i = 0; i &lt; ds_list_size(items); i++)
+        {
+            var textWidth = string_width(items[| i]);
+            var textHeight = string_height(items[| i]);
+            if(textWidth &gt; newWidth) newWidth = textWidth;
+            if(textHeight &gt; newHeight) newHeight = textHeight;
+        }
+        
+        newWidth += widthPadding;
+        newHeight += heightPadding;
+    
+            
+        if(newWidth &gt; width) width = newWidth;
+        if(newHeight &gt; height) height = newHeight;
+    }
+    
+    scr_invoke_events(id, textAlteredEvents);
+    oldText = text;
+    
+}
+
+//Font Changed
+if(font != oldFont)
+{
+    if(autosize)
+    {
+        draw_set_font(font);
+        
+        var newWidth = 0;
+        var newHeight = 0;
+        
+        for(var i = 0; i &lt; ds_list_size(items); i++)
+        {
+            var textWidth = string_width(items[| i]);
+            var textHeight = string_height(items[| i]);
+            if(textWidth &gt; newWidth) newWidth = textWidth;
+            if(textHeight &gt; newHeight) newHeight = textHeight;
+        }
+        
+        newWidth += widthPadding;
+        newHeight += heightPadding;
+    
+            
+        if(newWidth &gt; width) width = newWidth;
+        if(newHeight &gt; height) height = newHeight;
+    }
+    
+    scr_invoke_events(id, textAlteredEvents);
+    oldFont = font;
+} 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parent Event
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Scrolling extension
+var scale = obj_master_UI.scale;
+var X = x * scale;
+var Y = y * scale;
+var scaledWidth = round(width * scale);
+var scaledHeight = round(height * scale);
+var scaledDropdownHeight = dropdownHeight * scale;
+var scaledHeight = height * scale;
+var scaledBorderWidth = borderWidth * scale;
+
+
+if(point_in_rectangle(mouseX, mouseY, X, Y+scaledHeight, X + scaledWidth, Y + scaledHeight + scaledDropdownHeight) &amp;&amp; mouse_wheel_up())
+{
+    scr_invoke_events(id, scrollUpEvents);
+}
+if(point_in_rectangle(mouseX, mouseY, X, Y+scaledHeight, X + scaledWidth, Y + scaledHeight + scaledDropdownHeight) &amp;&amp; mouse_wheel_down())
+{
+    scr_invoke_events(id, scrollDownEvents);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Event Invokations
+if(ds_list_size(oldItems) != ds_list_size(items))
+{
+    show_debug_message("Items changed");
+    scr_invoke_events(id, itemsChangedEvents);
+    ds_list_copy(oldItems, items);
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Toggling Itemlist Visibility
+var scale = obj_master_UI.scale;
+var X = x * scale;
+var Y = y * scale;
+var scaledWidth = round(width * scale);
+var scaledHeight = round(height * scale);
+var scaledDropdownHeight = dropdownHeight * scale;
+var scaledHeight = height * scale;
+var scaledBorderWidth = borderWidth * scale;
+
+for(var i = 0; i &lt; ds_list_size(displayItems); i++)
+{
+    with(displayItems[| i]) depth = other.depth + 1;
+    if(i &gt;= displayIndex &amp;&amp; i &lt; displayIndex + itemCapacity)
+    {
+        if(showDropdown) with(displayItems[| i]) 
+        {
+            depth = other.depth - 1;
+            var index = i - other.displayIndex;
+            
+            y = other.y + other.height + other.itemOffset + index*(height+1);
+        }
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parent Event
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Drawing Self
+var scale = obj_master_UI.scale;
+var X = x * scale;
+var Y = y * scale;
+var scaledWidth = round(width * scale);
+var scaledHeight = round(height * scale);
+var scaledDropdownHeight = dropdownHeight * scale;
+var scaledHeight = height * scale;
+var scaledBorderWidth = borderWidth * scale;
+var scaledScrollbarWidth = scrollbarWidth * scale;
+
+if(showDropdown)
+{
+    //Background
+    draw_set_alpha(bgAlpha);
+    draw_set_color(displayBgColor);
+    draw_rectangle(X + scaledBorderWidth + 1, Y + scaledHeight - scaledBorderWidth + 1, X+scaledWidth - scaledBorderWidth, Y+scaledHeight + scaledDropdownHeight - scaledBorderWidth, false);    
+    
+    //Border
+    draw_set_alpha(borderAlpha);
+    draw_set_color(displayBorderColor);
+    
+    draw_line_width(X, Y-scaledBorderWidth/2 + scaledHeight, X+scaledWidth, Y-scaledBorderWidth/2 + scaledHeight, scaledBorderWidth);
+    draw_line_width(X+scaledWidth - scaledBorderWidth/2, Y-scaledBorderWidth + scaledHeight, X+scaledWidth - scaledBorderWidth/2, Y - scaledBorderWidth + scaledHeight + scaledDropdownHeight, scaledBorderWidth);
+    draw_line_width(X+scaledWidth, Y - scaledBorderWidth/2 + scaledHeight+ scaledDropdownHeight, X, Y - scaledBorderWidth/2 + scaledHeight+ scaledDropdownHeight, scaledBorderWidth);
+    draw_line_width(X + scaledBorderWidth/2, Y - scaledBorderWidth + scaledHeight+ scaledDropdownHeight, X + scaledBorderWidth/2, Y - scaledBorderWidth + scaledHeight, scaledBorderWidth);
+    
+    //Scrollbar
+    var division = (scaledDropdownHeight - scaledBorderWidth) / (1 + max(ds_list_size(items) - itemCapacity, 0));
+    var scrollbarOffset = division * displayIndex;
+    
+    draw_set_color(scrollbarColor);
+    draw_set_alpha(scrollbarAlpha);
+    draw_line_width(X+scaledWidth - scaledBorderWidth/2 - scaledBorderWidth, Y + scaledHeight + scrollbarOffset, X+scaledWidth - scaledBorderWidth/2 - scaledBorderWidth, Y + scaledHeight + division + scrollbarOffset, scaledScrollbarWidth);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>
