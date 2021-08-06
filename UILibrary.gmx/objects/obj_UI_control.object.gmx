@@ -151,6 +151,7 @@ if(point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight) &
     scr_invoke_events(id, clickEvents);
 }
 
+//Dragging
 if(dragging)
 {
     if(mouse_check_button(mb_left)) 

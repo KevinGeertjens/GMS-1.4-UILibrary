@@ -60,6 +60,8 @@ selectedIndex = 0;
 displayIndex = 0;
 
 
+
+
 //Dropdown box
 dropdownHeight = height * 3;
 showDropdown = false;
@@ -109,6 +111,12 @@ ds_list_add(itemsChangedEvents, scr_event_updateComboboxItems);
 oldItems = ds_list_create();
 ds_list_copy(oldItems, items);
 
+selectedItemChangedEvents = ds_list_create();
+ds_list_add(selectedItemChangedEvents, scr_event_updateSelectedItem);
+oldSelectedItem = text;
+
+clickOutsideEvents = ds_list_create();
+ds_list_add(clickOutsideEvents, scr_event_closeDropdownBox);
 </string>
           </argument>
         </arguments>
@@ -379,12 +387,34 @@ if(point_in_rectangle(mouseX, mouseY, X, Y+scaledHeight, X + scaledWidth, Y + sc
           <argument>
             <kind>1</kind>
             <string>///Event Invokations
+var scale = obj_master_UI.scale;
+var X = x * scale;
+var Y = y * scale;
+var scaledWidth = round(width * scale);
+var scaledHeight = round(height * scale);
+var scaledDropdownHeight = dropdownHeight * scale;
+var scaledHeight = height * scale;
+var scaledBorderWidth = borderWidth * scale;
+var scaledScrollbarWidth = scrollbarWidth * scale;
+
 if(ds_list_size(oldItems) != ds_list_size(items))
 {
     scr_invoke_events(id, itemsChangedEvents);
     ds_list_copy(oldItems, items);
 }
 
+//SelectedItemChanged
+if(items[| selectedIndex] != oldSelectedItem)
+{
+    scr_invoke_events(id, selectedItemChangedEvents);
+    oldSelectedItem = items[| selectedIndex];
+}
+
+//Click Outside
+if(!point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight + scaledDropdownHeight) &amp;&amp; mouse_check_button_pressed(mb_left))
+{
+    scr_invoke_events(id, clickOutsideEvents);
+}
 </string>
           </argument>
         </arguments>

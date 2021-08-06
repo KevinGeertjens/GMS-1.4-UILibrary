@@ -117,6 +117,10 @@ testComboBox2 = instance_create(testComboBox.x + testComboBox.width + 5, testCom
 testComboBox2.autosize = true;
 testComboBox2.depth = -1;
 
+//TextBoxes
+testTextBox = instance_create(testComboBox.x, testComboBox.y + testComboBox.height + 5, obj_UI_textbox);
+testTextBox.depth = -1;
+
 
 alarm[1] = 2;
 
@@ -183,6 +187,9 @@ testComboBox.y = testSlider.y + testSlider.height + 5;
 
 testComboBox2.x = testComboBox.x + testComboBox.width + 5;
 testComboBox2.y = testComboBox.y;
+
+testTextBox.x = testComboBox.x;
+testTextBox.y = testComboBox.y + testComboBox.height + 5;
 
 </string>
           </argument>

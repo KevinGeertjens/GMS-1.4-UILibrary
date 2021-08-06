@@ -74,10 +74,12 @@
         </scripts>
         <scripts name="Combobox">
           <script>scripts\scr_event_toggleDropdownBox.gml</script>
+          <script>scripts\scr_event_closeDropdownBox.gml</script>
           <script>scripts\scr_event_updateComboboxItems.gml</script>
           <script>scripts\scr_event_updateComboboxValue.gml</script>
           <script>scripts\scr_event_moveComboboxListUp.gml</script>
           <script>scripts\scr_event_moveComboboxListDown.gml</script>
+          <script>scripts\scr_event_updateSelectedItem.gml</script>
         </scripts>
       </scripts>
       <scripts name="Misc.">
@@ -90,6 +92,7 @@
         <script>scripts\scr_event_showTestMessage.gml</script>
         <script>scripts\scr_event_updateStateLabel.gml</script>
         <script>scripts\scr_event_updateValueLabel.gml</script>
+        <script>scripts\scr_event_updateCombobox1.gml</script>
       </scripts>
     </scripts>
     <scripts name="Graphics Controller">
