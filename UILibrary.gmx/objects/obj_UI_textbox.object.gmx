@@ -57,9 +57,15 @@ borderAlpha = 1;
 width = 150;
 
 //Keyboard Cursor
-cursorWidth = 4;
-cursorHeight = 9;
+cursorWidth = 2;
+cursorHeight = 12;
 cursorColor = obj_UI_colors.black;
+cursorAlpha = 1;
+showCursor = false;
+
+cursorTimerMax = 0.55;
+cursorTimer = cursorTimerMax;
+oscillateCursor = false;
 
 </string>
           </argument>
@@ -81,11 +87,16 @@ cursorColor = obj_UI_colors.black;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Keyboard Cursor
-cursor = instance_create(x + 2, y + 2, obj_UI_keyboardCursor);
-cursor.xscale = cursorWidth;
-cursor.yscale = cursorHeight;
-cursor.color = cursorColor;
+            <string>///Event Setup
+ds_list_add(clickEvents, scr_event_showKeyboardCursor);
+
+ds_list_add(mouseEnterEvents, scr_event_highlightBorder);
+ds_list_add(mouseEnterEvents, scr_event_highlightText);
+ds_list_add(mouseLeaveEvents, scr_event_returnNormalBorder);
+ds_list_add(mouseLeaveEvents, scr_event_returnNormalTextColor);
+
+clickOutsideEvents = ds_list_create();
+ds_list_add(clickOutsideEvents, scr_event_hideKeyboardCursor);
 </string>
           </argument>
         </arguments>
@@ -114,6 +125,73 @@ event_inherited();
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Oscillating Cursor
+if(oscillateCursor)
+{
+    cursorTimer -= 1*obj_deltatime.delta;
+    if(cursorTimer &lt;= 0)
+    {
+        cursorTimer = cursorTimerMax;
+        showCursor = !showCursor;
+    }
+}
+else if(showCursor)
+{
+    showCursor = false;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Event Invokations
+var scale = obj_master_UI.scale;
+var X = x*scale;
+var Y = y*scale;
+var scaledHeight = height * scale;
+var scaledWidth = width * scale;
+
+
+//Click Outside
+if(!point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight) &amp;&amp; mouse_check_button_pressed(mb_left))
+{
+    scr_invoke_events(id, clickOutsideEvents);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -134,6 +212,47 @@ event_inherited();
             <kind>1</kind>
             <string>///Parent Event
 event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Cursor
+if(showCursor)
+{
+    var scale = obj_master_UI.scale;
+    var X = x*scale;
+    var Y = y*scale;
+    var scaledHeight = height * scale;
+    var scaledCursorHeight = cursorHeight*scale;
+    var scaledCursorWidth = cursorWidth*scale;
+    var scaledBorderWidth = borderWidth*scale;
+    var scaledStringWidth = string_width(text);
+    var scaledTextOffset = 6 * scale;
+    
+    draw_set_alpha(cursorAlpha);
+    draw_set_color(cursorColor);
+    
+    var cursorX = X + scaledStringWidth + scaledTextOffset + scaledBorderWidth;
+    var cursorY = Y + scaledHeight/2 - scaledCursorHeight/2;
+    
+    draw_rectangle(cursorX, cursorY, cursorX + scaledCursorWidth, cursorY + scaledCursorHeight, false);
+}
 </string>
           </argument>
         </arguments>

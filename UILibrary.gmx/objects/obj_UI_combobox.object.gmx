@@ -190,6 +190,8 @@ for(var i = 0; i &lt; ds_list_size(displayItems); i++)
     label.x = x;
     label.y = y + height + offset + i*label.height;
 }
+
+event_user(0);
 </string>
           </argument>
         </arguments>

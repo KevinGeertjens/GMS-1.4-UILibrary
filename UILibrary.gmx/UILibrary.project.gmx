@@ -81,6 +81,10 @@
           <script>scripts\scr_event_moveComboboxListDown.gml</script>
           <script>scripts\scr_event_updateSelectedItem.gml</script>
         </scripts>
+        <scripts name="Textbox">
+          <script>scripts\scr_event_showKeyboardCursor.gml</script>
+          <script>scripts\scr_event_hideKeyboardCursor.gml</script>
+        </scripts>
       </scripts>
       <scripts name="Misc.">
         <script>scripts\scr_invoke_events.gml</script>
@@ -127,7 +131,6 @@
         </objects>
         <objects name="Textbox">
           <object>objects\obj_UI_textbox</object>
-          <object>objects\obj_UI_keyboardCursor</object>
         </objects>
       </objects>
       <objects name="Masters">

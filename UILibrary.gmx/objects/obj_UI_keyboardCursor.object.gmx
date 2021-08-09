@@ -84,7 +84,7 @@ event_inherited();
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -102,7 +102,16 @@ event_inherited();
           <argument>
             <kind>1</kind>
             <string>///Drawing Self
-draw_sprite_ext(sprite_index, image_index, x, y, xscale, yscale, rotation, color, alpha);
+var scale = obj_master_UI.scale;
+var X = x * scale;
+var Y = y * scale;
+var scaledXScale = xscale * scale;
+var scaledYScale = yscale * scale;
+
+draw_sprite_ext(sprite_index, image_index, X, Y, scaledXScale, scaledYScale, rotation, color, alpha);
+draw_set_color(c_red);
+draw_point(X - 2*scale, Y - 2*scale);
+draw_point(X+scaledXScale, Y+scaledYScale);
 </string>
           </argument>
         </arguments>
