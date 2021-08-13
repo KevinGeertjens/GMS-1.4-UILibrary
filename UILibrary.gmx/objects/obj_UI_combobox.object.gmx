@@ -144,11 +144,12 @@ for(var i = 0; i &lt; ds_list_size(items); i++)
     var label = instance_create(x, y + height + itemOffset, obj_UI_comboboxItem);
     label.text = item;
     label.bgColor = bgColor;
+    label.bgAlpha = 0;
     label.font = font;
     label.width = width - scrollbarWidth;
     label.height = (dropdownHeight - 2*itemOffset - itemCapacity+1) / itemCapacity;
     label.depth = depth + 1;
-    label.texstColor = textColor;
+    label.textColor = textColor;
     label.borderAlpha = 0;
     
     label.parentCombobox = id;
@@ -160,6 +161,29 @@ for(var i = 0; i &lt; ds_list_size(items); i++)
 }
 
 alarm[0] = 3;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>scr_activate_component_events_region(x, y+height+1, x+width, y+height+dropdownHeight+1, depth);
 </string>
           </argument>
         </arguments>
@@ -417,6 +441,21 @@ if(!point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight +
 {
     scr_invoke_events(id, clickOutsideEvents);
 }
+
+//Component Event Activate/Deactivate
+if(!point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight) &amp;&amp; mouse_check_button_pressed(mb_left))
+{
+    if(!point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight + scaledDropdownHeight))
+    {
+        scr_activate_component_events_region(x, y+height+1, x+width, y+height+dropdownHeight+1, depth);
+    }
+}
+
+/*if(point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight) &amp;&amp; mouse_check_button_pressed(mb_left))
+{
+    scr_deactivate_component_events_region(x, y+height+1, x+width, y+height+dropdownHeight+1, depth);
+} */
+
 </string>
           </argument>
         </arguments>
@@ -469,6 +508,8 @@ for(var i = 0; i &lt; ds_list_size(displayItems); i++)
     }
 }
 
+if(showDropdown) scr_deactivate_component_events_region(x, y+height+1, x+width, y+height+dropdownHeight+1, depth);
+else alarm[1] = 1;
 </string>
           </argument>
         </arguments>

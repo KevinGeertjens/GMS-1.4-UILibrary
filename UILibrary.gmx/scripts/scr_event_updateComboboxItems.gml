@@ -9,6 +9,7 @@ for(var i = 0; i < ds_list_size(sender.displayItems); i++)
     item.height = (sender.dropdownHeight - 2*sender.itemOffset - sender.itemCapacity+1) / sender.itemCapacity;
     item.font = sender.font;
     item.bgColor = sender.bgColor;
+    item.bgAlpha = 0;
     item.textColor = sender.textColor;
 }
 

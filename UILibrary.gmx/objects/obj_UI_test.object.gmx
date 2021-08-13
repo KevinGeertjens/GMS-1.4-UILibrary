@@ -115,6 +115,10 @@ ds_list_add(testComboBox.items, "item5");
 //Comboboxes
 testComboBox2 = instance_create(testComboBox.x + testComboBox.width + 5, testComboBox.y, obj_UI_combobox);
 testComboBox2.autosize = true;
+testComboBox2.bgAlpha = 0.4;
+testComboBox2.bgColor = obj_UI_colors.black;
+testComboBox2.textColor = obj_UI_colors.white;
+testComboBox2.borderColor = obj_UI_colors.white;
 testComboBox2.depth = -1;
 
 //TextBoxes
