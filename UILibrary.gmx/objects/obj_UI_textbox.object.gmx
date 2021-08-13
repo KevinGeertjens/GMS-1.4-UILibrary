@@ -57,8 +57,8 @@ borderAlpha = 1;
 width = 150;
 
 //Keyboard Cursor
-cursorWidth = 2;
-cursorHeight = 12;
+cursorWidth = 1;
+cursorHeight = 11;
 cursorColor = obj_UI_colors.black;
 cursorAlpha = 1;
 showCursor = false;
@@ -66,6 +66,10 @@ showCursor = false;
 cursorTimerMax = 0.55;
 cursorTimer = cursorTimerMax;
 oscillateCursor = false;
+
+//Keyboard Input
+deleteTimer = 0;
+deleteTimerMax = 4;
 
 </string>
           </argument>
@@ -97,6 +101,9 @@ ds_list_add(mouseLeaveEvents, scr_event_returnNormalTextColor);
 
 clickOutsideEvents = ds_list_create();
 ds_list_add(clickOutsideEvents, scr_event_hideKeyboardCursor);
+
+keyTypedEvents = ds_list_create();
+ds_list_add(keyTypedEvents, scr_event_processKeyboardInput);
 </string>
           </argument>
         </arguments>
@@ -142,18 +149,26 @@ event_inherited();
           <argument>
             <kind>1</kind>
             <string>///Oscillating Cursor
-if(oscillateCursor)
+if(oscillateCursor &amp;&amp; keyboard_check(vk_anykey))
 {
-    cursorTimer -= 1*obj_deltatime.delta;
-    if(cursorTimer &lt;= 0)
-    {
-        cursorTimer = cursorTimerMax;
-        showCursor = !showCursor;
-    }
+    showCursor = true;
+    cursorTimer = cursorTimerMax;
 }
-else if(showCursor)
+else
 {
-    showCursor = false;
+    if(oscillateCursor)
+    {
+        cursorTimer -= 1*obj_deltatime.delta;
+        if(cursorTimer &lt;= 0)
+        {
+            cursorTimer = cursorTimerMax;
+            showCursor = !showCursor;
+        }
+    }
+    else if(showCursor)
+    {
+        showCursor = false;
+    }
 }
 </string>
           </argument>
@@ -187,6 +202,62 @@ var scaledWidth = width * scale;
 if(!point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight) &amp;&amp; mouse_check_button_pressed(mb_left))
 {
     scr_invoke_events(id, clickOutsideEvents);
+}
+
+//Key Typed
+/*if(oscillateCursor &amp;&amp; keyboard_check(vk_anykey) &amp;&amp; alarm[0] &lt;= 0)
+{
+    scr_invoke_events(id, keyTypedEvents);
+    alarm[0] = 2;
+} */
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Processing Keyboard Input
+if(oscillateCursor)
+{
+    if(keyboard_check(vk_anykey))
+    {
+        text += string(keyboard_string);
+        keyboard_string = "";
+    }
+    
+    if(keyboard_check(vk_backspace) &amp;&amp; !keyboard_check_pressed(vk_backspace) &amp;&amp; deleteTimer &gt;= deleteTimerMax)
+    {
+        text = string_delete(text, string_length(text), 1);
+        deleteTimer = 0;
+        keyboard_string = "";
+    }
+    
+    if(keyboard_check_pressed(vk_backspace))
+    {
+        text = string_delete(text, string_length(text), 1);
+        deleteTimer = -17.5;
+        keyboard_string = "";
+    }
+}
+
+//Updating Delete Timer
+if(deleteTimer &lt; deleteTimerMax)
+{
+    deleteTimer += obj_deltatime.delta * 70;
 }
 </string>
           </argument>

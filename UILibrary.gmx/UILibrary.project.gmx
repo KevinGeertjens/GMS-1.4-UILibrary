@@ -84,6 +84,7 @@
         <scripts name="Textbox">
           <script>scripts\scr_event_showKeyboardCursor.gml</script>
           <script>scripts\scr_event_hideKeyboardCursor.gml</script>
+          <script>scripts\scr_event_processKeyboardInput.gml</script>
         </scripts>
       </scripts>
       <scripts name="Misc.">
