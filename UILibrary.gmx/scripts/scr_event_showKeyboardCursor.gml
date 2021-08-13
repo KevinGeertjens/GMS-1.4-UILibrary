@@ -5,4 +5,5 @@ if(!sender.oscillateCursor)
 {
     sender.oscillateCursor = true;
     sender.showCursor = true;
+    keyboard_string = "";
 }

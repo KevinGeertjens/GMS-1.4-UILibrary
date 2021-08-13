@@ -124,7 +124,6 @@ testComboBox2.depth = -1;
 //TextBoxes
 testTextBox = instance_create(testComboBox.x, testComboBox.y + testComboBox.height + 5, obj_UI_textbox);
 testTextBox.depth = -1;
-ds_list_add(testTextBox.clickEvents, scr_event_showTestMessage);
 
 
 alarm[1] = 2;

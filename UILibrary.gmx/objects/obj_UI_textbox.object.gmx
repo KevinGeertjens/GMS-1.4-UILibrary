@@ -71,6 +71,11 @@ oscillateCursor = false;
 deleteTimer = 0;
 deleteTimerMax = 4;
 
+//Text Display
+fullText = text;
+displayIndex = 0;
+indexTimer = 0;
+indexTimerMax = 1.8;
 </string>
           </argument>
         </arguments>
@@ -101,9 +106,6 @@ ds_list_add(mouseLeaveEvents, scr_event_returnNormalTextColor);
 
 clickOutsideEvents = ds_list_create();
 ds_list_add(clickOutsideEvents, scr_event_hideKeyboardCursor);
-
-keyTypedEvents = ds_list_create();
-ds_list_add(keyTypedEvents, scr_event_processKeyboardInput);
 </string>
           </argument>
         </arguments>
@@ -203,13 +205,6 @@ if(!point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight) 
 {
     scr_invoke_events(id, clickOutsideEvents);
 }
-
-//Key Typed
-/*if(oscillateCursor &amp;&amp; keyboard_check(vk_anykey) &amp;&amp; alarm[0] &lt;= 0)
-{
-    scr_invoke_events(id, keyTypedEvents);
-    alarm[0] = 2;
-} */
 </string>
           </argument>
         </arguments>
@@ -233,24 +228,47 @@ if(!point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight) 
             <string>///Processing Keyboard Input
 if(oscillateCursor)
 {
+    var overflow = scr_get_string_overflow(fullText, font, width - 20);
     if(keyboard_check(vk_anykey))
     {
-        text += string(keyboard_string);
+        overflow = scr_get_string_overflow(fullText, font, width - 20);
+        if(keyboard_lastkey != vk_left &amp;&amp; keyboard_lastkey != vk_right)
+        {
+            displayIndex = overflow;
+        }
+
+        fullText += string(keyboard_string);
         keyboard_string = "";
     }
     
     if(keyboard_check(vk_backspace) &amp;&amp; !keyboard_check_pressed(vk_backspace) &amp;&amp; deleteTimer &gt;= deleteTimerMax)
     {
-        text = string_delete(text, string_length(text), 1);
+        overflow = scr_get_string_overflow(fullText, font, width - 20);
+        displayIndex = overflow;
+        
+        fullText = string_delete(fullText, string_length(fullText), 1);
         deleteTimer = 0;
         keyboard_string = "";
     }
     
     if(keyboard_check_pressed(vk_backspace))
     {
-        text = string_delete(text, string_length(text), 1);
+        fullText = string_delete(fullText, string_length(fullText), 1);
         deleteTimer = -17.5;
         keyboard_string = "";
+    }
+    
+    //DisplayIndex
+    overflow = scr_get_string_overflow(fullText, font, width - 20);
+    if(keyboard_check(vk_left) &amp;&amp; indexTimer &gt;= indexTimerMax)
+    {
+        indexTimer = 0;
+        displayIndex = clamp(displayIndex-1, 0, overflow);
+    }
+    if(keyboard_check(vk_right) &amp;&amp; indexTimer &gt;= indexTimerMax)
+    {
+        indexTimer = 0;
+        displayIndex = clamp(displayIndex+1, 0, overflow);
     }
 }
 
@@ -259,6 +277,35 @@ if(deleteTimer &lt; deleteTimerMax)
 {
     deleteTimer += obj_deltatime.delta * 70;
 }
+
+//Updating Index Change Timer
+if(indexTimer &lt; indexTimerMax)
+{
+    indexTimer += obj_deltatime.delta * 70;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Updating Displayed Text
+text = string_delete(fullText, 1, displayIndex);
+text = scr_string_trim(text, font, width-18);
 </string>
           </argument>
         </arguments>
@@ -310,6 +357,7 @@ if(showCursor)
     var X = x*scale;
     var Y = y*scale;
     var scaledHeight = height * scale;
+    var scaledWidth = width * scale;
     var scaledCursorHeight = cursorHeight*scale;
     var scaledCursorWidth = cursorWidth*scale;
     var scaledBorderWidth = borderWidth*scale;
@@ -319,7 +367,10 @@ if(showCursor)
     draw_set_alpha(cursorAlpha);
     draw_set_color(cursorColor);
     
-    var cursorX = X + scaledStringWidth + scaledTextOffset + scaledBorderWidth;
+    var overflow = scr_get_string_overflow(fullText, font, width - 20);
+    var cursorX = clamp(X + scaledStringWidth + scaledTextOffset + scaledBorderWidth, X, X+scaledWidth - scaledBorderWidth);
+    if(overflow &gt; 1) cursorX = X + scaledWidth - 8*scale;
+    
     var cursorY = Y + scaledHeight/2 - scaledCursorHeight/2;
     
     draw_rectangle(cursorX, cursorY, cursorX + scaledCursorWidth, cursorY + scaledCursorHeight, false);
