@@ -76,6 +76,8 @@ fullText = text;
 displayIndex = 0;
 indexTimer = 0;
 indexTimerMax = 1.8;
+
+charCapacity = 20;
 </string>
           </argument>
         </arguments>
@@ -229,12 +231,13 @@ if(!point_in_rectangle(mouseX, mouseY, X, Y, X + scaledWidth, Y + scaledHeight) 
 if(oscillateCursor)
 {
     var overflow = scr_get_string_overflow(fullText, font, width - 20);
+    var maxDisplayIndex = max(string_length(fullText) - charCapacity, 0);
     if(keyboard_check(vk_anykey))
     {
-        overflow = scr_get_string_overflow(fullText, font, width - 20);
+        maxDisplayIndex = max(string_length(fullText) - charCapacity, 0);
         if(keyboard_lastkey != vk_left &amp;&amp; keyboard_lastkey != vk_right)
         {
-            displayIndex = overflow;
+            displayIndex = maxDisplayIndex;
         }
 
         fullText += string(keyboard_string);
@@ -243,8 +246,8 @@ if(oscillateCursor)
     
     if(keyboard_check(vk_backspace) &amp;&amp; !keyboard_check_pressed(vk_backspace) &amp;&amp; deleteTimer &gt;= deleteTimerMax)
     {
-        overflow = scr_get_string_overflow(fullText, font, width - 20);
-        displayIndex = overflow;
+        maxDisplayIndex = max(string_length(fullText) - charCapacity, 0);
+        displayIndex = maxDisplayIndex;
         
         fullText = string_delete(fullText, string_length(fullText), 1);
         deleteTimer = 0;
@@ -259,16 +262,16 @@ if(oscillateCursor)
     }
     
     //DisplayIndex
-    overflow = scr_get_string_overflow(fullText, font, width - 20);
+    var maxDisplayIndex = max(string_length(fullText) - charCapacity, 0);
     if(keyboard_check(vk_left) &amp;&amp; indexTimer &gt;= indexTimerMax)
     {
         indexTimer = 0;
-        displayIndex = clamp(displayIndex-1, 0, overflow);
+        displayIndex = clamp(displayIndex-1, 0, maxDisplayIndex);
     }
     if(keyboard_check(vk_right) &amp;&amp; indexTimer &gt;= indexTimerMax)
     {
         indexTimer = 0;
-        displayIndex = clamp(displayIndex+1, 0, overflow);
+        displayIndex = clamp(displayIndex+1, 0, maxDisplayIndex);
     }
 }
 
@@ -305,7 +308,7 @@ if(indexTimer &lt; indexTimerMax)
             <kind>1</kind>
             <string>///Updating Displayed Text
 text = string_delete(fullText, 1, displayIndex);
-text = scr_string_trim(text, font, width-18);
+text = scr_string_trim(text, font, width-20);
 </string>
           </argument>
         </arguments>
@@ -369,7 +372,7 @@ if(showCursor)
     
     var overflow = scr_get_string_overflow(fullText, font, width - 20);
     var cursorX = clamp(X + scaledStringWidth + scaledTextOffset + scaledBorderWidth, X, X+scaledWidth - scaledBorderWidth);
-    if(overflow &gt; 1) cursorX = X + scaledWidth - 8*scale;
+    //if(overflow &gt; 1) cursorX = X + scaledWidth - 8*scale;
     
     var cursorY = Y + scaledHeight/2 - scaledCursorHeight/2;
     
