@@ -125,7 +125,9 @@ testComboBox2.depth = -1;
 testTextBox = instance_create(testComboBox.x, testComboBox.y + testComboBox.height + 5, obj_UI_textbox);
 testTextBox.depth = -1;
 
-
+//Spriteboex
+testSpriteBox = instance_create(testTextBox.x, testTextBox.y + testTextBox.height + 5, obj_UI_spritebox);
+testSpriteBox.depth = -1;
 alarm[1] = 2;
 
 
@@ -195,6 +197,9 @@ testComboBox2.y = testComboBox.y;
 testTextBox.x = testComboBox.x;
 testTextBox.y = testComboBox.y + testComboBox.height + 5;
 
+testSpriteBox.x = testTextBox.x;
+testSpriteBox.y = testTextBox.y + testTextBox.height + 5;
+
 </string>
           </argument>
         </arguments>
@@ -247,7 +252,7 @@ with(obj_master_UI)
             <string>///Test Input
 if(keyboard_check_pressed(ord("F")))
 {
-    if(window_get_width() == 1280) window_set_size(960, 540);
+    if(window_get_width() == 1280) window_set_size(640, 360);
     else window_set_size(1280, 720);
     
     alarm[0] = 1;

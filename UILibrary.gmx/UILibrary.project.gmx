@@ -41,7 +41,11 @@
   </datafiles>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprites name="UILibrary">
+      <sprite>sprites\spr_placeholder</sprite>
+    </sprites>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -147,7 +151,10 @@
   <rooms name="rooms">
     <room>rooms\rm_test</room>
   </rooms>
-  <constants number="3">
+  <constants number="6">
+    <constant name="SCALE_ORIGINAL_SIZE">2</constant>
+    <constant name="SCALE_STRETCH_ASPECT_RATIO">1</constant>
+    <constant name="SCALE_STRETCH_FULL">0</constant>
     <constant name="TEXT_ALIGN_LEFT">0</constant>
     <constant name="TEXT_ALIGN_CENTER">1</constant>
     <constant name="TEXT_ALIGN_RIGHT">2</constant>
