@@ -125,9 +125,15 @@ testComboBox2.depth = -1;
 testTextBox = instance_create(testComboBox.x, testComboBox.y + testComboBox.height + 5, obj_UI_textbox);
 testTextBox.depth = -1;
 
-//Spriteboex
+//SpriteBox
 testSpriteBox = instance_create(testTextBox.x, testTextBox.y + testTextBox.height + 5, obj_UI_spritebox);
 testSpriteBox.depth = -1;
+
+//ProgressBar
+testProgressBar = instance_create(testSpriteBox.x + testSpriteBox.width + 5, testSpriteBox.y, obj_UI_progressbar);
+testProgressBar.depth = -1;
+testProgressBar.barAlpha = 0.5;
+
 alarm[1] = 2;
 
 
@@ -200,6 +206,8 @@ testTextBox.y = testComboBox.y + testComboBox.height + 5;
 testSpriteBox.x = testTextBox.x;
 testSpriteBox.y = testTextBox.y + testTextBox.height + 5;
 
+testProgressBar.x = testSpriteBox.x + testSpriteBox.width + 5;
+testProgressBar.y = testSpriteBox.y;
 </string>
           </argument>
         </arguments>
@@ -257,6 +265,28 @@ if(keyboard_check_pressed(ord("F")))
     
     alarm[0] = 1;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Updating Loading Bar
+testProgressBar.progress += 1 * obj_deltatime.delta;
 </string>
           </argument>
         </arguments>
